@@ -1,0 +1,374 @@
+/* =============================================
+   RESPONSIVIDADE - MOBILE FIRST APPROACH
+   ============================================= */
+
+/* Dispositivos muito pequenos (até 576px) */
+@media (max-width: 576px) {
+    /* Ajustes globais */
+    body {
+        padding-top: 70px;
+    }
+    
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .section {
+        padding: 3rem 0;
+    }
+    
+    /* Typografia mobile */
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    /* Navbar mobile */
+    .navbar {
+        padding: 0.75rem 0;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .logo-j {
+        width: 30px;
+        height: 30px;
+        font-size: 1.1rem;
+    }
+    
+    .navbar-collapse {
+        background: var(--primary);
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        margin-top: 1rem;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    /* Hero section mobile */
+    .hero {
+        padding: 4rem 0;
+        min-height: auto;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .profile-frame {
+        width: 250px;
+        height: 250px;
+        margin: 2rem auto;
+    }
+    
+    .profile-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .tech-stack {
+        padding: 1.5rem;
+    }
+    
+    .tech-icons {
+        gap: 1rem;
+    }
+    
+    .tech-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    /* Sobre section mobile */
+    .about-card,
+    .info-card,
+    .skill-card,
+    .project-card,
+    .contact-info,
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+    
+    .about-icon,
+    .skill-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .skill-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .skill-title {
+        font-size: 1.5rem;
+    }
+    
+    /* Projetos mobile */
+    .project-links {
+        flex-direction: column;
+    }
+    
+    .project-links .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .github-cta {
+        padding: 2rem 1rem;
+    }
+    
+    /* Contato mobile */
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .contact-icon {
+        margin: 0 auto;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: 3rem 0 1.5rem;
+        text-align: center;
+    }
+    
+    .footer-brand,
+    .footer-links,
+    .footer-social {
+        margin-bottom: 2rem;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    /* Botões flutuantes mobile */
+    .whatsapp-float {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.8rem;
+    }
+    
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 85px;
+        right: 20px;
+        font-size: 1rem;
+    }
+    
+    /* Ajustes de grid */
+    .row {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+    
+    [class*="col-"] {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Dispositivos pequenos (577px a 768px) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .section {
+        padding: 4rem 0;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.3rem;
+    }
+    
+    /* Hero section tablet */
+    .hero {
+        padding: 5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .profile-frame {
+        width: 280px;
+        height: 280px;
+    }
+    
+    /* Grid tablet */
+    .row {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+    }
+    
+    [class*="col-"] {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    /* Cards tablet */
+    .about-card,
+    .skill-card,
+    .project-card {
+        padding: 2rem;
+    }
+    
+    /* Contato tablet */
+    .contact-form-container {
+        padding: 2rem;
+    }
+}
+
+/* Tablets (769px a 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+    
+    /* Ajustes de layout tablet landscape */
+    .hero-buttons .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .profile-frame {
+        width: 300px;
+        height: 300px;
+    }
+    
+    /* Ajustes de grid */
+    .col-lg-6 {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Desktop pequeno (993px a 1200px) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Desktop grande (acima de 1200px) */
+@media (min-width: 1201px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Ajustes específicos para orientação paisagem */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 5rem 0;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .profile-frame {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+/* Ajustes para telas muito largas */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* Ajustes para impressão */
+@media print {
+    .navbar,
+    .hero-buttons,
+    .whatsapp-float,
+    .back-to-top,
+    .scroll-down {
+        display: none !important;
+    }
+    
+    body {
+        padding-top: 0;
+        color: black !important;
+        background: white !important;
+    }
+    
+    .section {
+        padding: 2rem 0;
+        page-break-inside: avoid;
+    }
+    
+    a {
+        color: black !important;
+        text-decoration: underline !important;
+    }
+    
+    .card,
+    .skill-card,
+    .project-card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}

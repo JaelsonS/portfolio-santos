@@ -1,40 +1,83 @@
-# Portfólio Santos Tech
+# 🚀 Portfolio Jaelson Santos
 
-Portfólio profissional e currículo online de **Jaelson Santos**, desenvolvedor web **Full Stack** em formação. Este projeto apresenta meus estudos, projetos práticos e serviços em desenvolvimento web, servindo também como base para evolução futura em sistemas e aplicações completas.
+Portfolio profissional moderno e responsivo desenvolvido com as melhores práticas de desenvolvimento web. 100% responsivo, otimizado para performance e com animações suaves.
 
----
+![Portfolio Preview](https://via.placeholder.com/800x450/1a237e/ffffff?text=Portfolio+Jaelson+Santos)
 
-## 🏗 Estrutura do Projeto
+## ✨ Características Principais
 
-- **frontend**: Interface do portfólio (HTML, CSS e JavaScript)  
-- **backend**: Estrutura reservada para futuras APIs e sistemas
+- ✅ **100% Responsivo** - Mobile, Tablet e Desktop
+- ✅ **Animações Suaves** - Scroll animations e efeitos visuais
+- ✅ **Design Moderno** - Interface limpa e profissional
+- ✅ **Performance Otimizada** - Carregamento rápido
+- ✅ **SEO Friendly** - Meta tags e estrutura semântica
+- ✅ **Acessibilidade** - Navegação por teclado e screen readers
+- ✅ **Fácil Manutenção** - Estrutura modular e organizada
 
----
+## 🎨 Design System
 
-## 💻 Tecnologias Utilizadas
+### Cores Principais
+```css
+--primary: #1a237e;      /* Azul principal */
+--secondary: #3949ab;    /* Azul secundário */
 
-- HTML5  
-- CSS3  
-- JavaScript  
-- Git e GitHub
+Tipografia
+Fonte Principal: Inter (Google Fonts)
 
----
+Pesos: 300, 400, 500, 600, 700, 800
 
-## 🚧 Status do Projeto
+Hierarquia: Sistema de escala modular
 
-Em desenvolvimento
+📱 Responsividade
+O portfolio é totalmente responsivo com breakpoints específicos:
 
----
+Dispositivo	Largura	Características
+Mobile	≤ 576px	Layout em coluna única, navegação hamburger
+Tablet	577px - 768px	2 colunas, ajustes de tipografia
+Desktop	≥ 769px	Layout completo, hover effects
+🛠 Tecnologias Utilizadas
+Frontend
+HTML5 - Estrutura semântica
 
-## 📞 Contato
+CSS3 - Flexbox, Grid, Custom Properties
 
-- **WhatsApp**: [+351 916 447 990](https://wa.me/351916447990)  
-- **Email**: [jaelsondev345@gmail.com](mailto:jaelsondev345@gmail.com)  
-- **LinkedIn**: [Perfil LinkedIn](https://www.linkedin.com/in/jaelson-santos-8628b52a4/)  
-- **GitHub**: [Perfil GitHub](https://github.com/JaelsonS)
+JavaScript ES6+ - Funcionalidades interativas
 
----
+Bootstrap 5 - Sistema de grid e componentes
 
-## 📄 Sobre
+Bibliotecas
+Font Awesome 6 - Ícones
 
-O objetivo deste portfólio é apresentar meus estudos, projetos e serviços em desenvolvimento web, mostrando habilidades em **HTML, CSS e JavaScript**, bem como demonstrar capacidade de evolução para sistemas web completos e aplicações futuras.
+Google Fonts - Tipografia
+
+Intersection Observer API - Animações ao scroll
+
+Ferramentas
+VS Code - Editor de código
+
+Git - Controle de versão
+
+GitHub Pages - Hospedagem gratuita
+
+📂 Estrutura do Projeto
+text
+portfolio/
+├── index.html              # Página principal
+├── styles/                 # Estilos CSS
+│   ├── main.css           # Estilos globais e variáveis
+│   ├── components.css     # Componentes específicos
+│   ├── animations.css     # Animações e keyframes
+│   └── responsive.css     # Media queries
+├── js/                    # JavaScript
+│   ├── main.js           # Inicialização principal
+│   ├── animations.js     # Sistema de animações
+│   └── form-handler.js   # Gerenciamento de formulários
+├── assets/                # Recursos estáticos
+│   └── images/
+│       └── profile.jpg   # Foto de perfil
+└── README.md             # Esta documentação
+🚀 Como Usar
+1. Clonar o Repositório
+bash
+git clone https://github.com/JaelsonS/portfolio.git
+cd portfolio
