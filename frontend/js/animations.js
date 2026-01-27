@@ -5,13 +5,14 @@ class PortfolioAnimations {
         this.animationElements = [];
         this.observers = [];
         this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.isMobileView = window.matchMedia('(max-width: 768px)').matches;
         this.init();
     }
     
     init() {
         console.log('🎨 Inicializando animações...');
         
-        if (this.prefersReducedMotion) {
+        if (this.prefersReducedMotion || this.isMobileView) {
             this.revealAll();
             console.log('ℹ️ Animações reduzidas por preferência do utilizador.');
             return;
@@ -210,6 +211,7 @@ class PortfolioAnimations {
     // Digitação no hero chama atenção sem peso de vídeo.
     setupTextAnimations() {
         const heroTitle = document.querySelector('.hero-title');
+        if (this.isMobileView) return;
         if (heroTitle) {
             const text = heroTitle.textContent;
             heroTitle.textContent = '';
@@ -243,13 +245,19 @@ class PortfolioAnimations {
     // Parallax simples, sem libs, para evitar custos extras.
     setupParallaxEffect() {
         const hero = document.querySelector('.hero');
-        if (!hero) return;
-        
+        if (!hero || this.isMobileView || this.prefersReducedMotion) return;
+
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            
-            hero.style.backgroundPosition = `center ${rate}px`;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.5;
+                    hero.style.backgroundPosition = `center ${rate}px`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     }
     

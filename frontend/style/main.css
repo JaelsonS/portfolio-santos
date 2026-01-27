@@ -190,6 +190,8 @@ p {
 .section {
     padding: 5rem 0;
     position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
 }
 
 .section.bg-light {

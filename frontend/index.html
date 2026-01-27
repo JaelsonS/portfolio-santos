@@ -8,15 +8,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preload" as="style" href="styles/main.css">
-    <link rel="preload" as="image" href="assets/images/jaelson-240.jpg">
+    <link rel="preload" as="style" href="style/main.css">
+    <link rel="preload" as="style" href="style/components.css">
+    <link rel="preload" as="style" href="style/animations.css">
+    <link rel="preload" as="style" href="style/responsive.css">
+        <link rel="preload" as="image" href="assets/images/jaelson-240.jpg"
+            imagesrcset="assets/images/jaelson-240.jpg 240w, assets/images/jaelson-320.jpg 320w, assets/images/jaelson-480.jpg 480w"
+            imagesizes="(max-width: 576px) 240px, (max-width: 768px) 280px, (max-width: 992px) 300px, 320px">
     <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/components.css">
+    <link rel="stylesheet" href="style/animations.css">
+    <link rel="stylesheet" href="style/responsive.css">
     <meta name="description" content="Portfolio de Jaelson Santos - Desenvolvedor Full Stack em Leiria, Portugal. Buscando oportunidade como estagiário.">
     <meta name="keywords" content="desenvolvedor full stack, javascript, react, node.js, estagiário, leiria, portugal">
     <meta name="author" content="Jaelson Santos">
@@ -723,9 +731,9 @@
     <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
         <i class="fas fa-chevron-up"></i>
     </a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/form-handler.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/animations.js"></script>
+    <script defer src="js/form-handler.js"></script>
 </body>
 </html>

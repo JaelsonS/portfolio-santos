@@ -36,12 +36,12 @@ const PortfolioApp = {
     hideLoading: function() {
         const loadingScreen = document.querySelector('.loading-screen');
         if (loadingScreen) {
-            setTimeout(() => {
+            window.requestAnimationFrame(() => {
                 loadingScreen.classList.add('hidden');
                 setTimeout(() => {
                     loadingScreen.style.display = 'none';
-                }, 500);
-            }, 1000);
+                }, 200);
+            });
         }
     },
     
@@ -82,15 +82,31 @@ const PortfolioApp = {
         
         if (!navbar) return;
         
+        this.cacheSections();
+
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollY = window.scrollY;
+
+                    if (scrollY > 100) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+
+                    this.updateActiveNavLink(scrollY);
+                    ticking = false;
+                });
+                ticking = true;
             }
-            
-            this.updateActiveNavLink();
         });
+
+        window.addEventListener('resize', this.helpers.debounce(() => {
+            this.cacheSections();
+            this.updateActiveNavLink(window.scrollY);
+        }, 200));
         
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -102,23 +118,34 @@ const PortfolioApp = {
             });
         });
         
-        this.updateActiveNavLink();
+        this.updateActiveNavLink(window.scrollY);
+    },
+
+    // Cache das posições para evitar layout thrash no scroll.
+    cacheSections: function() {
+        const sections = document.querySelectorAll('section[id]');
+        this.sectionCache = Array.from(sections).map(section => {
+            const top = section.offsetTop;
+            const height = section.offsetHeight;
+            return {
+                id: section.getAttribute('id'),
+                top,
+                bottom: top + height
+            };
+        });
     },
     
     // Link ativo ajuda a orientação em páginas longas.
-    updateActiveNavLink: function() {
-        const sections = document.querySelectorAll('section[id]');
+    updateActiveNavLink: function(scrollY) {
         const navLinks = document.querySelectorAll('.nav-link');
         
         let current = '';
-        const scrollPosition = window.scrollY + 100;
-        
+        const scrollPosition = (scrollY ?? window.scrollY) + 100;
+
+        const sections = this.sectionCache || [];
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
+            if (scrollPosition >= section.top && scrollPosition < section.bottom) {
+                current = section.id;
             }
         });
         
@@ -414,7 +441,7 @@ const PortfolioApp = {
                 
                 tooltipEl.className = 'custom-tooltip';
                 tooltipEl.textContent = tooltip;
-                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.position = 'fixed';
                 tooltipEl.style.background = 'var(--dark)';
                 tooltipEl.style.color = 'white';
                 tooltipEl.style.padding = '0.5rem 1rem';
@@ -423,12 +450,13 @@ const PortfolioApp = {
                 tooltipEl.style.zIndex = '9999';
                 tooltipEl.style.whiteSpace = 'nowrap';
                 tooltipEl.style.pointerEvents = 'none';
+                tooltipEl.style.transform = 'translate(-50%, calc(-100% - 10px))';
                 
                 document.body.appendChild(tooltipEl);
                 
                 const rect = el.getBoundingClientRect();
-                tooltipEl.style.top = `${rect.top - tooltipEl.offsetHeight - 10}px`;
-                tooltipEl.style.left = `${rect.left + rect.width / 2 - tooltipEl.offsetWidth / 2}px`;
+                tooltipEl.style.top = `${rect.top}px`;
+                tooltipEl.style.left = `${rect.left + rect.width / 2}px`;
                 
                 el._tooltip = tooltipEl;
             });
