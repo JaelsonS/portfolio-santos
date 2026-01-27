@@ -77,7 +77,7 @@ CORS_ORIGIN=http://localhost:5500,http://127.0.0.1:5500,https://seu-portfolio.ve
 BREVO_API_KEY=seu_token_brevo
 BREVO_SENDER_EMAIL=seu_email@dominio.com
 BREVO_SENDER_NAME=Portfolio Jaelson Santos
-BREVO_TO_EMAIL=jaelsonsilva345@gmail.com
+BREVO_TO_EMAIL=jaelsondev345@gmail.com
 
 PORTFOLIO_URL=https://portfolio-santos.vercel.app
 GITHUB_URL=https://github.com/JaelsonS

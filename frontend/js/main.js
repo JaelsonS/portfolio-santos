@@ -1,6 +1,6 @@
 // Orquestração simples do frontend para manter o bundle leve.
 const CONFIG = {
-    contactEmail: 'jaelsonsilva345@gmail.com',
+    contactEmail: 'jaelsondev345@gmail.com',
     whatsappNumber: '+351916447990',
     linkedinUrl: 'https://www.linkedin.com/in/jaelson-santos-8628b52a4/',
     githubUrl: 'https://github.com/JaelsonS',
