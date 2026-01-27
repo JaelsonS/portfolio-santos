@@ -12,6 +12,10 @@
     .loading-screen {
         display: none !important;
     }
+
+    .skip-link {
+        display: none;
+    }
     
     .container {
         padding: 0 1rem;
@@ -247,6 +251,10 @@
 
 /* Dispositivos pequenos (577px a 768px) */
 @media (min-width: 577px) and (max-width: 768px) {
+    .skip-link {
+        display: none;
+    }
+
     .container {
         max-width: 720px;
     }
@@ -307,6 +315,10 @@
 
 /* Tablets (769px a 992px) */
 @media (min-width: 769px) and (max-width: 992px) {
+    .skip-link {
+        display: none;
+    }
+
     .container {
         max-width: 960px;
     }
