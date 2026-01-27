@@ -1,43 +1,38 @@
-// =============================================
-// MAIN JS - PORTFOLIO JAELSON SANTOS
-// =============================================
-
-// Configurações globais
+// Orquestração simples do frontend para manter o bundle leve.
 const CONFIG = {
-    contactEmail: 'jaelsondev345@gmail.com',
+    contactEmail: 'jaelsonsilva345@gmail.com',
     whatsappNumber: '+351916447990',
     linkedinUrl: 'https://www.linkedin.com/in/jaelson-santos-8628b52a4/',
     githubUrl: 'https://github.com/JaelsonS',
     portfolioUrl: 'https://jaelsons.github.io'
 };
 
-// Objeto principal da aplicação
+// Objeto principal para manter tudo organizado sem framework.
 const PortfolioApp = {
-    // Inicializa todas as funcionalidades
+    // Inicialização sequencial ajuda a debugar problemas em produção.
     init: function() {
         console.log('🚀 Portfolio Jaelson Santos iniciando...');
         
-        // Remove loading screen
+        // Loading simples evita dependências extras.
         this.hideLoading();
         
-        // Inicializa módulos
+        // Cada módulo cuida de um pedaço de UX.
         this.initSmoothScroll();
         this.initNavbar();
         this.initBackToTop();
         this.initAnimations();
         this.initSkillBars();
-        this.initContactForm();
         this.initWhatsAppFloat();
         this.initProjectCards();
         this.initTooltips();
         
-        // Adiciona classe de inicialização
+        // Classe usada para transições leves.
         document.body.classList.add('page-transition');
         
         console.log('✅ Portfolio inicializado com sucesso!');
     },
     
-    // Esconde tela de loading
+    // Esconde loading quando o DOM já respondeu.
     hideLoading: function() {
         const loadingScreen = document.querySelector('.loading-screen');
         if (loadingScreen) {
@@ -50,47 +45,43 @@ const PortfolioApp = {
         }
     },
     
-    // Smooth scroll para links internos
+    // Scroll suave melhora navegação sem bibliotecas externas.
     initSmoothScroll: function() {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 
-                // Ignora links vazios
                 if (href === '#' || href === '#!') return;
                 
                 const targetElement = document.querySelector(href);
                 if (targetElement) {
                     e.preventDefault();
                     
-                    // Fecha navbar mobile se aberto
                     const navbarCollapse = document.querySelector('.navbar-collapse.show');
                     if (navbarCollapse) {
                         const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
                         if (bsCollapse) bsCollapse.hide();
                     }
                     
-                    // Scroll suave
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
                     });
                     
-                    // Atualiza URL sem recarregar a página
                     history.pushState(null, null, href);
                 }
             });
         });
     },
     
-    // Navbar effects
+    // Navbar reage ao scroll para manter contraste e foco.
     initNavbar: function() {
         const navbar = document.querySelector('.navbar');
         const navLinks = document.querySelectorAll('.nav-link');
         
         if (!navbar) return;
         
-        // Efeito de scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
@@ -98,11 +89,9 @@ const PortfolioApp = {
                 navbar.classList.remove('scrolled');
             }
             
-            // Atualiza link ativo
             this.updateActiveNavLink();
         });
         
-        // Fecha navbar ao clicar em link (mobile)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const navbarCollapse = document.querySelector('.navbar-collapse.show');
@@ -113,11 +102,10 @@ const PortfolioApp = {
             });
         });
         
-        // Adiciona classe ativa ao link da página atual
         this.updateActiveNavLink();
     },
     
-    // Atualiza link ativo na navbar
+    // Link ativo ajuda a orientação em páginas longas.
     updateActiveNavLink: function() {
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -142,7 +130,7 @@ const PortfolioApp = {
         });
     },
     
-    // Botão "Voltar ao topo"
+    // Voltar ao topo reduz esforço em mobile.
     initBackToTop: function() {
         const backToTop = document.getElementById('backToTop');
         if (!backToTop) return;
@@ -161,9 +149,11 @@ const PortfolioApp = {
         });
     },
     
-    // Sistema de animações
+    // Animações isoladas para poder desligar com prefers-reduced-motion.
     initAnimations: function() {
-        // Adiciona classes de animação aos elementos
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
         const animateElements = document.querySelectorAll(
             '.hero-content, .profile-container, .section-header, ' +
             '.about-card, .info-card, .skill-card, .project-card, ' +
@@ -175,19 +165,16 @@ const PortfolioApp = {
             el.style.setProperty('--i', index);
         });
         
-        // Configura Intersection Observer
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
                         
-                        // Animação específica para skills
                         if (entry.target.classList.contains('skill-card')) {
                             this.animateSkillBars(entry.target);
                         }
                         
-                        // Para de observar após animar
                         observer.unobserve(entry.target);
                     }
                 });
@@ -199,20 +186,17 @@ const PortfolioApp = {
             }
         );
         
-        // Observa cada elemento
         animateElements.forEach(el => observer.observe(el));
     },
     
-    // Anima as barras de skills
+    // Barras começam em 0 para reforçar o efeito de progresso.
     initSkillBars: function() {
         const skillLevels = document.querySelectorAll('.skill-level');
         skillLevels.forEach(level => {
-            // Garante que as barras comecem em 0
             level.style.width = '0';
         });
     },
     
-    // Anima barras de skills quando visíveis
     animateSkillBars: function(skillCard) {
         const skillLevels = skillCard.querySelectorAll('.skill-level');
         skillLevels.forEach(level => {
@@ -223,7 +207,7 @@ const PortfolioApp = {
         });
     },
     
-    // Formulário de contato
+    // Mantido por compatibilidade caso o form-handler seja removido.
     initContactForm: function() {
         const contactForm = document.getElementById('contactForm');
         if (!contactForm) return;
@@ -231,7 +215,6 @@ const PortfolioApp = {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Dados do formulário
             const formData = {
                 name: document.getElementById('name').value.trim(),
                 email: document.getElementById('email').value.trim(),
@@ -239,12 +222,10 @@ const PortfolioApp = {
                 message: document.getElementById('message').value.trim()
             };
             
-            // Validação
             if (!this.validateForm(formData)) {
                 return;
             }
             
-            // Feedback visual
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalContent = submitBtn.innerHTML;
             
@@ -252,21 +233,16 @@ const PortfolioApp = {
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
             
             try {
-                // Simula delay de rede
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
-                // Prepara link do email
                 const mailtoLink = this.generateMailtoLink(formData);
                 
-                // Feedback de sucesso
                 this.showSuccessMessage(submitBtn);
                 
-                // Redireciona para cliente de email
                 setTimeout(() => {
                     window.location.href = mailtoLink;
                 }, 800);
                 
-                // Reseta formulário após 5 segundos
                 setTimeout(() => {
                     contactForm.reset();
                     submitBtn.innerHTML = originalContent;
@@ -282,20 +258,17 @@ const PortfolioApp = {
         });
     },
     
-    // Valida dados do formulário
+    // Validação local evita requisições desnecessárias.
     validateForm: function(formData) {
-        // Remove mensagens de erro anteriores
         this.removeErrorMessages();
         
         let isValid = true;
         
-        // Valida nome
         if (!formData.name) {
             this.showFieldError('name', 'Por favor, insira seu nome');
             isValid = false;
         }
         
-        // Valida email
         if (!formData.email) {
             this.showFieldError('email', 'Por favor, insira seu email');
             isValid = false;
@@ -304,7 +277,6 @@ const PortfolioApp = {
             isValid = false;
         }
         
-        // Valida mensagem
         if (!formData.message) {
             this.showFieldError('message', 'Por favor, insira sua mensagem');
             isValid = false;
@@ -316,36 +288,30 @@ const PortfolioApp = {
         return isValid;
     },
     
-    // Valida formato de email
     isValidEmail: function(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     },
     
-    // Mostra erro em campo específico
     showFieldError: function(fieldId, message) {
         const field = document.getElementById(fieldId);
         const formGroup = field.closest('.form-floating');
         
-        // Adiciona classe de erro
         field.classList.add('is-invalid');
         formGroup.classList.add('has-error');
         
-        // Cria mensagem de erro
         const errorDiv = document.createElement('div');
         errorDiv.className = 'invalid-feedback d-block';
         errorDiv.textContent = message;
         
         formGroup.appendChild(errorDiv);
         
-        // Scroll para o primeiro erro
         if (!this.firstErrorField) {
             this.firstErrorField = field;
             field.focus();
         }
     },
     
-    // Remove todas as mensagens de erro
     removeErrorMessages: function() {
         this.firstErrorField = null;
         
@@ -362,7 +328,6 @@ const PortfolioApp = {
         });
     },
     
-    // Gera link mailto
     generateMailtoLink: function(formData) {
         const subject = encodeURIComponent(formData.subject);
         const body = encodeURIComponent(
@@ -375,26 +340,22 @@ const PortfolioApp = {
         return `mailto:${CONFIG.contactEmail}?subject=${subject}&body=${body}`;
     },
     
-    // Mostra mensagem de sucesso
     showSuccessMessage: function(button) {
         button.innerHTML = '<i class="fas fa-check me-2"></i>Mensagem Enviada!';
         button.classList.remove('btn-primary');
         button.classList.add('btn-success');
         
-        // Efeito visual adicional
         button.classList.add('success-animation');
         setTimeout(() => {
             button.classList.remove('success-animation');
         }, 500);
     },
     
-    // Mostra mensagem de erro
     showErrorMessage: function(button, originalContent) {
         button.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Erro ao Enviar';
         button.classList.remove('btn-primary');
         button.classList.add('btn-danger');
         
-        // Restaura após 3 segundos
         setTimeout(() => {
             button.innerHTML = originalContent;
             button.classList.remove('btn-danger');
@@ -403,24 +364,22 @@ const PortfolioApp = {
         }, 3000);
     },
     
-    // WhatsApp float button
+    // CTA do WhatsApp é link direto (sem API) para manter simplicidade.
     initWhatsAppFloat: function() {
         const whatsappFloat = document.getElementById('whatsappFloat');
         if (!whatsappFloat) return;
         
-        // Adiciona mensagem padrão
         const defaultMessage = encodeURIComponent(
             'Olá Jaelson! Vi seu portfolio e gostaria de conversar sobre oportunidades.'
         );
         whatsappFloat.href = `https://wa.me/${CONFIG.whatsappNumber}?text=${defaultMessage}`;
         
-        // Animação de entrada
         setTimeout(() => {
             whatsappFloat.classList.add('visible');
         }, 2000);
     },
     
-    // Efeitos nos cards de projeto
+    // Microinterações leves para dar feedback sem distrair.
     initProjectCards: function() {
         const projectCards = document.querySelectorAll('.project-card');
         
@@ -433,7 +392,6 @@ const PortfolioApp = {
                 card.style.transform = 'translateY(0) scale(1)';
             });
             
-            // Efeito de clique
             card.addEventListener('click', (e) => {
                 if (!e.target.closest('a, button')) {
                     card.classList.add('hover-scale');
@@ -445,7 +403,7 @@ const PortfolioApp = {
         });
     },
     
-    // Tooltips
+    // Tooltip simples para não pesar o bundle.
     initTooltips: function() {
         const tooltipElements = document.querySelectorAll('[data-tooltip]');
         
@@ -468,7 +426,6 @@ const PortfolioApp = {
                 
                 document.body.appendChild(tooltipEl);
                 
-                // Posiciona tooltip
                 const rect = el.getBoundingClientRect();
                 tooltipEl.style.top = `${rect.top - tooltipEl.offsetHeight - 10}px`;
                 tooltipEl.style.left = `${rect.left + rect.width / 2 - tooltipEl.offsetWidth / 2}px`;
@@ -485,9 +442,9 @@ const PortfolioApp = {
         });
     },
     
-    // Funções auxiliares
+    // Helpers reutilizáveis em outras interações.
     helpers: {
-        // Debounce para performance
+        // Debounce reduz chamadas em sequência no input.
         debounce: function(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -500,7 +457,7 @@ const PortfolioApp = {
             };
         },
         
-        // Throttle para performance
+        // Throttle mantém listeners leves.
         throttle: function(func, limit) {
             let inThrottle;
             return function() {
@@ -514,39 +471,36 @@ const PortfolioApp = {
             };
         },
         
-        // Formata número de telefone
         formatPhoneNumber: function(phone) {
             return phone.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
         },
         
-        // Detecta dispositivo móvel
         isMobile: function() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         },
         
-        // Detecta iOS
         isIOS: function() {
             return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         }
     }
 };
 
-// Inicializa app quando DOM estiver pronto
+// Inicializa após o DOM para garantir elementos prontos.
 document.addEventListener('DOMContentLoaded', () => PortfolioApp.init());
 
-// Suporte para navegadores antigos
+// Compatibilidade mínima sem dependências externas.
 if (typeof window.addEventListener === 'undefined') {
     window.addEventListener = function(event, callback) {
         window.attachEvent('on' + event, callback);
     };
 }
 
-// Polyfill para forEach em NodeList
+// Polyfill para browsers antigos.
 if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
 }
 
-// Polyfill para Element.closest()
+// Polyfill básico para Element.closest().
 if (!Element.prototype.matches) {
     Element.prototype.matches = 
         Element.prototype.msMatchesSelector || 

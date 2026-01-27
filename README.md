@@ -1,83 +1,138 @@
-# 🚀 Portfolio Jaelson Santos
+# Portfolio — Jaelson Santos
 
-Portfolio profissional moderno e responsivo desenvolvido com as melhores práticas de desenvolvimento web. 100% responsivo, otimizado para performance e com animações suaves.
+Portfolio pessoal moderno, responsivo e acessível, focado em candidaturas a estágio ou vaga júnior fullstack. O projeto foi organizado para crescimento e inclui backend funcional para envio de contato por email. Links diretos (WhatsApp, LinkedIn, GitHub) são intencionais para manter clareza e simplicidade no contacto.
 
-![Portfolio Preview](https://via.placeholder.com/800x450/1a237e/ffffff?text=Portfolio+Jaelson+Santos)
+## Objetivo
 
-## ✨ Características Principais
+Apresentar um perfil profissional com foco em clareza, legibilidade, performance e experiência do recrutador, demonstrando domínio de frontend e backend.
 
-- ✅ **100% Responsivo** - Mobile, Tablet e Desktop
-- ✅ **Animações Suaves** - Scroll animations e efeitos visuais
-- ✅ **Design Moderno** - Interface limpa e profissional
-- ✅ **Performance Otimizada** - Carregamento rápido
-- ✅ **SEO Friendly** - Meta tags e estrutura semântica
-- ✅ **Acessibilidade** - Navegação por teclado e screen readers
-- ✅ **Fácil Manutenção** - Estrutura modular e organizada
+## Stack
 
-## 🎨 Design System
+**Frontend**
+- HTML5, CSS3, JavaScript (ES6+)
+- Bootstrap 5
 
-### Cores Principais
-```css
---primary: #1a237e;      /* Azul principal */
---secondary: #3949ab;    /* Azul secundário */
+**Backend**
+- Node.js + Express
+- Brevo API (email)
 
-Tipografia
-Fonte Principal: Inter (Google Fonts)
+## Estrutura do projeto
 
-Pesos: 300, 400, 500, 600, 700, 800
+portfolio-santos/
+├── frontend/
+│   ├── index.html
+│   ├── styles/              # Bundle principal de estilos (importa os CSS legados)
+│   │   └── main.css
+│   ├── style/               # Estilos atuais (legado)
+│   ├── js/
+│   │   ├── main.js
+│   │   ├── animations.js
+│   │   └── form-handler.js
+│   └── assets/
+│       ├── images/
+│       └── icons/
+├── backend/
+│   ├── src/
+│   │   ├── server.js
+│   │   ├── routes/
+│   │   │   └── contact.js
+│   │   ├── middleware/
+│   │   │   └── validateContact.js
+│   │   └── services/
+│   │       └── emailService.js
+│   ├── package.json
+│   └── .env.example
+└── README.md
+```
 
-Hierarquia: Sistema de escala modular
+> Nota: o arquivo frontend/styles/main.css importa os estilos existentes em frontend/style para manter compatibilidade sem reescrever toda a base.
 
-📱 Responsividade
-O portfolio é totalmente responsivo com breakpoints específicos:
+## Como rodar localmente
 
-Dispositivo	Largura	Características
-Mobile	≤ 576px	Layout em coluna única, navegação hamburger
-Tablet	577px - 768px	2 colunas, ajustes de tipografia
-Desktop	≥ 769px	Layout completo, hover effects
-🛠 Tecnologias Utilizadas
-Frontend
-HTML5 - Estrutura semântica
+### 1) Frontend
+Abra o arquivo frontend/index.html com Live Server ou outro servidor estático.
 
-CSS3 - Flexbox, Grid, Custom Properties
+Se o backend estiver em outra URL, atualize o atributo data-api-base no body:
 
-JavaScript ES6+ - Funcionalidades interativas
+```
+<body data-api-base="http://localhost:3001">
+```
 
-Bootstrap 5 - Sistema de grid e componentes
+### 2) Backend
 
-Bibliotecas
-Font Awesome 6 - Ícones
+1. Entre na pasta backend
+2. Instale dependências
+3. Crie o .env baseado no .env.example
+4. Inicie o servidor
 
-Google Fonts - Tipografia
+> Nota: o backend assume Node.js 18+ por causa do fetch nativo.
 
-Intersection Observer API - Animações ao scroll
+## Variáveis de ambiente
 
-Ferramentas
-VS Code - Editor de código
+Arquivo: backend/.env
 
-Git - Controle de versão
+```
+PORT=3001
+CORS_ORIGIN=http://localhost:5500,http://127.0.0.1:5500,https://seu-portfolio.vercel.app
 
-GitHub Pages - Hospedagem gratuita
+BREVO_API_KEY=seu_token_brevo
+BREVO_SENDER_EMAIL=seu_email@dominio.com
+BREVO_SENDER_NAME=Portfolio Jaelson Santos
+BREVO_TO_EMAIL=jaelsonsilva345@gmail.com
+```
 
-📂 Estrutura do Projeto
-text
-portfolio/
-├── index.html              # Página principal
-├── styles/                 # Estilos CSS
-│   ├── main.css           # Estilos globais e variáveis
-│   ├── components.css     # Componentes específicos
-│   ├── animations.css     # Animações e keyframes
-│   └── responsive.css     # Media queries
-├── js/                    # JavaScript
-│   ├── main.js           # Inicialização principal
-│   ├── animations.js     # Sistema de animações
-│   └── form-handler.js   # Gerenciamento de formulários
-├── assets/                # Recursos estáticos
-│   └── images/
-│       └── profile.jpg   # Foto de perfil
-└── README.md             # Esta documentação
-🚀 Como Usar
-1. Clonar o Repositório
-bash
-git clone https://github.com/JaelsonS/portfolio.git
-cd portfolio
+## Como funciona o envio de email
+
+- O endpoint POST /api/contact valida os dados e envia email via Brevo API.
+- Se o Brevo não estiver configurado, o endpoint retorna erro com instruções.
+
+## Contato direto via redes
+
+- WhatsApp, LinkedIn e GitHub são links diretos, sem integração de API.
+- Decisão intencional para reduzir complexidade e deixar o portfolio mais claro para o recrutador.
+
+## API
+
+### POST /api/contact
+
+Payload:
+
+```
+{
+	"name": "Seu Nome",
+	"email": "email@dominio.com",
+	"subject": "Assunto (opcional)",
+	"message": "Sua mensagem"
+}
+```
+
+Resposta de sucesso:
+
+```
+{
+	"success": true,
+	"email": { "sent": true }
+}
+```
+
+## Deploy
+
+**Frontend**: Vercel.
+
+**Backend**: Render.
+
+Após o deploy do backend, atualize data-api-base para a URL do servidor e ajuste CORS_ORIGIN no .env.
+
+## Decisões técnicas
+
+- Uso de Express com validação simples para manter o backend leve e fácil de escalar.
+- Brevo API para email evita configuração de SMTP no Render e simplifica o deploy.
+- Links diretos nas redes reduzem manutenção e mantêm o foco na mensagem.
+- Separação de serviços/rotas facilita evolução sem reescrever o frontend.
+
+## Próximos passos sugeridos
+
+- Adicionar mais projetos e casos de estudo.
+- Criar testes básicos para validação do endpoint.
+- Separar componentes HTML caso migre para um framework (React/Next.js).
+

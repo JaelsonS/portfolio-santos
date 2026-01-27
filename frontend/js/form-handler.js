@@ -1,27 +1,36 @@
-// =============================================
-// FORM HANDLER - GERENCIAMENTO DE FORMULÁRIOS
-// =============================================
+// Form handler focado em UX: valida rápido no cliente e evita chamadas desnecessárias ao backend.
 
 class FormHandler {
     constructor() {
         this.forms = new Map();
+        this.apiBase = this.getApiBase();
         this.init();
     }
     
     init() {
         console.log('📝 Inicializando gerenciador de formulários...');
-        
-        // Configura todos os formulários da página
+
+        // Centralizo configs aqui para manter consistência entre formulários.
         this.setupContactForm();
         this.setupNewsletterForm();
-        
-        // Configura validações em tempo real
+
+        // Validação em tempo real reduz retrabalho do utilizador.
         this.setupRealTimeValidation();
         
         console.log('✅ Gerenciador de formulários pronto!');
     }
+
+    getApiBase() {
+        // Prefiro data-api-base no HTML para trocar ambiente sem rebuild (Vercel/Render).
+        const dataBase = document.body ? document.body.dataset.apiBase : '';
+        if (dataBase) return dataBase;
+        if (window.location && window.location.origin && window.location.origin !== 'null') {
+            return window.location.origin;
+        }
+        return 'http://localhost:3001';
+    }
     
-    // Configura formulário de contato
+    // Contact é o formulário principal; fica aqui para facilitar manutenção.
     setupContactForm() {
         const contactForm = document.getElementById('contactForm');
         if (!contactForm) return;
@@ -37,12 +46,11 @@ class FormHandler {
             }
         });
         
-        // Event listeners
         contactForm.addEventListener('submit', (e) => this.handleSubmit(e, 'contact'));
         this.setupFieldEvents(contactForm);
     }
     
-    // Configura formulário de newsletter (exemplo futuro)
+    // Newsletter está preparada para o futuro, mas não bloqueia o bundle atual.
     setupNewsletterForm() {
         const newsletterForm = document.getElementById('newsletterForm');
         if (!newsletterForm) return;
@@ -61,49 +69,43 @@ class FormHandler {
         newsletterForm.addEventListener('submit', (e) => this.handleSubmit(e, 'newsletter'));
     }
     
-    // Configura eventos para campos
+    // Eventos simples para feedback imediato sem libs externas.
     setupFieldEvents(form) {
         const inputs = form.querySelectorAll('input, textarea');
         
         inputs.forEach(input => {
-            // Limpa erro ao digitar
             input.addEventListener('input', () => {
                 this.clearFieldError(input);
-                
-                // Validação em tempo real para email
+
                 if (input.type === 'email' && input.value) {
                     this.validateEmailField(input);
                 }
             });
-            
-            // Foco no campo
+
             input.addEventListener('focus', () => {
                 input.parentElement.classList.add('focused');
             });
-            
-            // Perde foco
+
             input.addEventListener('blur', () => {
                 input.parentElement.classList.remove('focused');
-                
-                // Valida campo ao sair
+
                 if (input.value.trim() && input.hasAttribute('required')) {
                     this.validateField(input);
                 }
             });
         });
     }
-    
-    // Validação em tempo real
+
+    // Escuto o documento para manter validação consistente mesmo em inputs futuros.
     setupRealTimeValidation() {
-        // Validação de email em tempo real
         document.addEventListener('input', (e) => {
             if (e.target.type === 'email' && e.target.value) {
                 this.validateEmailField(e.target);
             }
         });
     }
-    
-    // Manipula submit do formulário
+
+    // Submissão: valida primeiro, depois chama API para poupar requests no backend.
     async handleSubmit(event, formName) {
         event.preventDefault();
         
@@ -111,61 +113,55 @@ class FormHandler {
         if (!formConfig) return;
         
         const form = formConfig.element;
+        this.setFormStatus(form, '', null);
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalContent = submitBtn.innerHTML;
         
-        // Valida formulário
         if (!this.validateForm(form, formConfig)) {
             this.showFormError(form, 'Por favor, corrija os erros acima.');
             return;
         }
-        
-        // Mostra estado de carregamento
+
         this.showLoadingState(submitBtn, formConfig.config.sendingMessage);
         
         try {
-            // Prepara dados
             const formData = this.getFormData(form, formConfig.fields);
+
+            await this.submitContactForm(formData);
             
-            // Simula envio (substituir por API real)
-            await this.simulateSubmission(formData);
-            
-            // Sucesso
             this.showSuccessState(submitBtn, formConfig.config.successMessage);
             this.resetForm(form);
+            this.setFormStatus(form, formConfig.config.successMessage, 'success');
             
-            // Feedback adicional
             this.showSuccessNotification(formConfig.config.successMessage);
-            
-            // Retorna ao normal após 5 segundos
+
             setTimeout(() => {
                 this.resetButtonState(submitBtn, originalContent);
             }, 5000);
             
         } catch (error) {
+            const errorMessage = error?.message || formConfig.config.errorMessage;
             console.error('Erro no envio:', error);
-            this.showErrorState(submitBtn, formConfig.config.errorMessage);
-            
-            // Retorna ao normal após 3 segundos
+            this.showErrorState(submitBtn, errorMessage);
+            this.setFormStatus(form, errorMessage, 'error');
+
             setTimeout(() => {
                 this.resetButtonState(submitBtn, originalContent);
             }, 3000);
         }
     }
-    
-    // Valida formulário completo
+
+    // Validação enxuta para evitar regex pesada e manter performance no mobile.
     validateForm(form, config) {
         let isValid = true;
         
-        // Valida campos obrigatórios
         config.required.forEach(fieldName => {
             const field = form.querySelector(`[name="${fieldName}"]`);
             if (field && !this.validateField(field)) {
                 isValid = false;
             }
         });
-        
-        // Valida campos específicos
+
         const emailField = form.querySelector('[type="email"]');
         if (emailField && emailField.value) {
             if (!this.validateEmailField(emailField)) {
@@ -176,19 +172,17 @@ class FormHandler {
         return isValid;
     }
     
-    // Valida campo individual
+    // Validação por campo para mensagens claras sem recarregar a página.
     validateField(field) {
         const value = field.value.trim();
         let isValid = true;
         let errorMessage = '';
         
-        // Verifica se é obrigatório
         if (field.hasAttribute('required') && !value) {
             isValid = false;
             errorMessage = 'Este campo é obrigatório';
         }
-        
-        // Validações específicas por tipo
+
         if (isValid && value) {
             switch (field.type) {
                 case 'email':
@@ -213,14 +207,12 @@ class FormHandler {
                     break;
             }
             
-            // Validações para textarea
             if (field.tagName === 'TEXTAREA' && value.length < 10) {
                 isValid = false;
                 errorMessage = 'A mensagem deve ter pelo menos 10 caracteres';
             }
         }
-        
-        // Mostra ou esconde erro
+
         if (!isValid) {
             this.showFieldError(field, errorMessage);
         } else {
@@ -230,7 +222,7 @@ class FormHandler {
         return isValid;
     }
     
-    // Valida campo de email
+    // Email em tempo real evita frustração no submit.
     validateEmailField(field) {
         const value = field.value.trim();
         const isValid = this.isValidEmail(value);
@@ -247,19 +239,17 @@ class FormHandler {
         return isValid;
     }
     
-    // Verifica se email é válido
     isValidEmail(email) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     }
-    
-    // Verifica se telefone é válido (simplificado)
+
+    // Regex simples para não bloquear formatos internacionais.
     isValidPhone(phone) {
         const phoneRegex = /^[\d\s\-\+\(\)]{8,}$/;
         return phoneRegex.test(phone);
     }
-    
-    // Verifica se URL é válida
+
     isValidUrl(url) {
         try {
             new URL(url);
@@ -269,7 +259,7 @@ class FormHandler {
         }
     }
     
-    // Mostra erro no campo
+    // Feedback direto no campo evita o utilizador procurar o erro.
     showFieldError(field, message) {
         this.clearFieldStatus(field);
         
@@ -282,7 +272,6 @@ class FormHandler {
         
         field.parentElement.appendChild(errorDiv);
         
-        // Scroll para o primeiro erro
         if (!this.firstErrorField) {
             this.firstErrorField = field;
             setTimeout(() => {
@@ -292,52 +281,46 @@ class FormHandler {
         }
     }
     
-    // Mostra sucesso no campo
+    // Marca sucesso para reforçar confiança sem popups.
     showFieldSuccess(field) {
         this.clearFieldStatus(field);
         field.classList.add('is-valid');
     }
     
-    // Limpa status do campo
+    // Limpeza para não acumular classes e manter CSS previsível.
     clearFieldStatus(field) {
         field.classList.remove('is-invalid', 'is-valid');
         field.parentElement.classList.remove('has-error', 'has-success');
         
-        // Remove mensagens de feedback
         const feedbacks = field.parentElement.querySelectorAll('.invalid-feedback, .valid-feedback');
         feedbacks.forEach(feedback => feedback.remove());
     }
     
-    // Limpa erro específico
     clearFieldError(field) {
         this.firstErrorField = null;
         this.clearFieldStatus(field);
     }
     
-    // Mostra erro no formulário
+    // Status no topo do formulário é mais legível em mobile.
     showFormError(form, message) {
-        // Remove erros anteriores
-        const existingError = form.querySelector('.form-error');
-        if (existingError) existingError.remove();
-        
-        // Cria elemento de erro
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'form-error alert alert-danger mt-3';
-        errorDiv.textContent = message;
-        
-        // Insere antes do botão de submit
-        const submitBtn = form.querySelector('button[type="submit"]');
-        form.insertBefore(errorDiv, submitBtn.parentElement);
-        
-        // Remove após 5 segundos
-        setTimeout(() => {
-            if (errorDiv.parentElement) {
-                errorDiv.remove();
-            }
-        }, 5000);
+        this.setFormStatus(form, message, 'error');
+    }
+
+    setFormStatus(form, message, type) {
+        const statusEl = form.querySelector('.form-status');
+        if (!statusEl) return;
+
+        statusEl.textContent = message;
+        statusEl.classList.remove('is-success', 'is-error', 'is-visible');
+
+        if (message) {
+            statusEl.classList.add('is-visible');
+            if (type === 'success') statusEl.classList.add('is-success');
+            if (type === 'error') statusEl.classList.add('is-error');
+        }
     }
     
-    // Mostra estado de carregamento
+    // Botão em loading evita double click e reduz chamadas duplicadas.
     showLoadingState(button, message) {
         button.disabled = true;
         button.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>${message}`;
@@ -345,14 +328,12 @@ class FormHandler {
         button.classList.add('btn-warning');
     }
     
-    // Mostra estado de sucesso
     showSuccessState(button, message) {
         button.innerHTML = `<i class="fas fa-check me-2"></i>${message}`;
         button.classList.remove('btn-warning', 'btn-primary', 'btn-danger');
         button.classList.add('btn-success');
     }
     
-    // Mostra estado de erro
     showErrorState(button, message) {
         button.innerHTML = `<i class="fas fa-exclamation-circle me-2"></i>${message}`;
         button.classList.remove('btn-warning', 'btn-primary', 'btn-success');
@@ -360,7 +341,6 @@ class FormHandler {
         button.disabled = false;
     }
     
-    // Reseta estado do botão
     resetButtonState(button, originalContent) {
         button.innerHTML = originalContent;
         button.classList.remove('btn-warning', 'btn-success', 'btn-danger');
@@ -368,7 +348,7 @@ class FormHandler {
         button.disabled = false;
     }
     
-    // Obtém dados do formulário
+    // Normalizo os campos aqui para manter o payload consistente.
     getFormData(form, fields) {
         const data = {};
         
@@ -382,58 +362,44 @@ class FormHandler {
         return data;
     }
     
-    // Simula envio (substituir por API real)
-    async simulateSubmission(formData) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Simula 90% de sucesso
-                if (Math.random() > 0.1) {
-                    console.log('📤 Dados enviados:', formData);
-                    
-                    // Se for formulário de contato, redireciona para email
-                    if (formData.email && formData.message) {
-                        this.redirectToMail(formData);
-                    }
-                    
-                    resolve(formData);
-                } else {
-                    reject(new Error('Falha na conexão'));
-                }
-            }, 1500);
+    async submitContactForm(formData) {
+        const payload = {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject || 'Contato do Portfolio',
+            message: formData.message
+        };
+
+        const response = await fetch(`${this.apiBase}/api/contact`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
         });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok || data.success === false) {
+            const details = data?.errors?.map((error) => error.message).join(' ');
+            throw new Error(details || data.message || 'Erro ao enviar mensagem.');
+        }
+
+        return data;
     }
     
-    // Redireciona para cliente de email
-    redirectToMail(formData) {
-        const subject = encodeURIComponent(formData.subject || 'Contato do Portfolio');
-        const body = encodeURIComponent(
-            `Nome: ${formData.name}\n` +
-            `Email: ${formData.email}\n\n` +
-            `Mensagem:\n${formData.message}\n\n` +
-            `---\nEnviado do portfolio de Jaelson Santos`
-        );
-        
-        setTimeout(() => {
-            window.location.href = `mailto:jaelsondev345@gmail.com?subject=${subject}&body=${body}`;
-        }, 800);
-    }
-    
-    // Reseta formulário
     resetForm(form) {
         form.reset();
         
-        // Limpa todos os status
         const fields = form.querySelectorAll('input, textarea');
         fields.forEach(field => this.clearFieldStatus(field));
     }
     
-    // Mostra notificação de sucesso
+    // Notificação leve (sem lib) para manter bundle pequeno.
     showSuccessNotification(message) {
-        // Remove notificação anterior
         const existingNotification = document.querySelector('.success-notification');
         if (existingNotification) existingNotification.remove();
         
-        // Cria notificação
         const notification = document.createElement('div');
         notification.className = 'success-notification';
         notification.innerHTML = `
@@ -443,7 +409,6 @@ class FormHandler {
             </div>
         `;
         
-        // Estilos
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -462,7 +427,6 @@ class FormHandler {
         
         document.body.appendChild(notification);
         
-        // Remove após 5 segundos
         setTimeout(() => {
             notification.style.animation = 'slideOutRight 0.3s ease';
             setTimeout(() => {
@@ -472,7 +436,6 @@ class FormHandler {
             }, 300);
         }, 5000);
         
-        // Adiciona animação CSS se não existir
         if (!document.querySelector('#notification-animations')) {
             const style = document.createElement('style');
             style.id = 'notification-animations';
@@ -504,15 +467,14 @@ class FormHandler {
     }
 }
 
-// Inicializa quando DOM estiver pronto
+// Inicializa após o DOM para garantir que os elementos existam.
 document.addEventListener('DOMContentLoaded', () => {
     const formHandler = new FormHandler();
-    
-    // Expõe para debug (opcional)
+
     window.formHandler = formHandler;
 });
 
-// Adiciona estilos para validação
+// Estilos injetados aqui evitam depender do Bootstrap para estados do input.
 document.addEventListener('DOMContentLoaded', () => {
     const style = document.createElement('style');
     style.textContent = `

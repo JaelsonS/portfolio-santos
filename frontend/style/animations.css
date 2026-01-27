@@ -1,8 +1,3 @@
-/* =============================================
-   ANIMAÇÕES AO SCROLL
-   ============================================= */
-
-/* Classes para elementos animáveis */
 .animate-element {
     opacity: 0;
     transform: translateY(30px);
@@ -26,7 +21,6 @@
 .delay-9 { transition-delay: 0.9s !important; }
 .delay-10 { transition-delay: 1s !important; }
 
-/* Animação específica para cada seção */
 .hero-content.animate-element {
     transition-delay: 0.2s;
 }
@@ -53,7 +47,6 @@
 .project-card:nth-child(3).animate-element { transition-delay: 0.4s; }
 .project-card:nth-child(4).animate-element { transition-delay: 0.5s; }
 
-/* Animação para barras de skills */
 .skill-level {
     animation: fillSkillBar 1.5s ease-in-out forwards;
     animation-play-state: paused;
@@ -68,7 +61,6 @@
     to { width: attr(data-level); }
 }
 
-/* Substituição por JavaScript */
 .skill-level[data-level="90"] { width: 90%; }
 .skill-level[data-level="85"] { width: 85%; }
 .skill-level[data-level="80"] { width: 80%; }
@@ -78,7 +70,6 @@
 .skill-level[data-level="60"] { width: 60%; }
 .skill-level[data-level="95"] { width: 95%; }
 
-/* Animação para tech icons */
 .tech-icon {
     animation: fadeInScale 0.5s ease forwards;
     animation-delay: calc(var(--i) * 0.1s);

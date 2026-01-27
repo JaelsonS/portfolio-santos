@@ -1,64 +1,63 @@
-// =============================================
-// ANIMAÇÕES ESPECÍFICAS
-// =============================================
+// Animações pensadas para dar contexto sem pesar no scroll.
 
 class PortfolioAnimations {
     constructor() {
         this.animationElements = [];
         this.observers = [];
+        this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         this.init();
     }
     
     init() {
         console.log('🎨 Inicializando animações...');
         
-        // Configura todos os tipos de animação
+        if (this.prefersReducedMotion) {
+            this.revealAll();
+            console.log('ℹ️ Animações reduzidas por preferência do utilizador.');
+            return;
+        }
+
+        // Separar tipos de animação ajuda a isolar impacto de performance.
         this.setupScrollAnimations();
         this.setupHoverAnimations();
         this.setupTextAnimations();
         this.setupLoadingAnimations();
         this.setupParallaxEffect();
         
-        // Inicia observadores
+        // Observers só iniciam após setup para evitar reflow extra.
         this.startObservers();
         
         console.log('✅ Animações configuradas!');
     }
     
-    // Animações baseadas no scroll
+    // Scroll animations com IntersectionObserver para reduzir custo em mobile.
     setupScrollAnimations() {
-        // Elementos que devem animar ao entrar na viewport
         const scrollElements = document.querySelectorAll(
             '.hero-content, .profile-container, .section-header, ' +
             '.about-card, .info-card, .skill-card, .project-card, ' +
             '.tech-icon, .contact-item, .github-cta'
         );
-        
-        // Adiciona classes de animação
+
         scrollElements.forEach((element, index) => {
             element.classList.add('animate-on-scroll');
             element.dataset.animationIndex = index;
         });
-        
-        // Configura Intersection Observer
+
         const scrollObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const element = entry.target;
-                        
-                        // Adiciona delay baseado no índice
+
                         const index = parseInt(element.dataset.animationIndex) || 0;
                         const delay = Math.min(index * 0.1, 1);
-                        
+
                         setTimeout(() => {
                             element.classList.add('animated');
-                            
-                            // Animação específica para cada tipo
+
                             this.animateElement(element);
                         }, delay * 1000);
-                        
-                        // Para de observar após animar
+
                         scrollObserver.unobserve(element);
                     }
                 });
@@ -70,17 +69,28 @@ class PortfolioAnimations {
             }
         );
         
-        // Inicia observação
         scrollElements.forEach(element => scrollObserver.observe(element));
         this.observers.push(scrollObserver);
     }
+
+    revealAll() {
+        const elements = document.querySelectorAll(
+            '.hero-content, .profile-container, .section-header, ' +
+            '.about-card, .info-card, .skill-card, .project-card, ' +
+            '.tech-icon, .contact-item, .github-cta'
+        );
+
+        elements.forEach(element => {
+            element.classList.add('animated');
+            element.style.opacity = '1';
+            element.style.transform = 'none';
+        });
+    }
     
-    // Animação específica por tipo de elemento
+    // Cada tipo tem microefeito próprio para evitar animação genérica demais.
     animateElement(element) {
-        // Remove classes de animação anteriores
         element.classList.remove('animate-on-scroll');
-        
-        // Animação baseada na classe do elemento
+
         if (element.classList.contains('skill-card')) {
             this.animateSkillCard(element);
         } else if (element.classList.contains('project-card')) {
@@ -92,16 +102,14 @@ class PortfolioAnimations {
         }
     }
     
-    // Animação para cards de skills
+    // Skills animam só quando visíveis para poupar repaints.
     animateSkillCard(skillCard) {
-        // Anima as barras de progresso
         const skillBars = skillCard.querySelectorAll('.skill-level');
         skillBars.forEach((bar, index) => {
             setTimeout(() => {
                 const level = bar.getAttribute('data-level');
                 bar.style.width = level + '%';
-                
-                // Efeito de pulso no final
+
                 setTimeout(() => {
                     bar.classList.add('pulse-glow');
                     setTimeout(() => {
@@ -112,9 +120,8 @@ class PortfolioAnimations {
         });
     }
     
-    // Animação para cards de projeto
+    // Projeto entra com leve escala para reforçar hierarquia visual.
     animateProjectCard(projectCard) {
-        // Efeito de entrada
         projectCard.style.opacity = '0';
         projectCard.style.transform = 'translateY(50px) scale(0.9)';
         
@@ -123,16 +130,14 @@ class PortfolioAnimations {
             projectCard.style.opacity = '1';
             projectCard.style.transform = 'translateY(0) scale(1)';
             
-            // Efeito de brilho
             setTimeout(() => {
                 projectCard.classList.add('hover-lift');
             }, 600);
         }, 100);
     }
     
-    // Animação para ícones tech
+    // Ícones com rotação curta para dar vida sem exagero.
     animateTechIcon(icon) {
-        // Efeito de rotação e escala
         icon.style.transform = 'rotate(0deg) scale(0)';
         
         setTimeout(() => {
@@ -141,7 +146,7 @@ class PortfolioAnimations {
         }, 100);
     }
     
-    // Animação para headers de seção
+    // Linha da seção anima para guiar o olhar.
     animateSectionHeader(header) {
         const line = header.querySelector('.section-line');
         if (line) {
@@ -153,15 +158,13 @@ class PortfolioAnimations {
         }
     }
     
-    // Animações de hover
+    // Hover é leve para não competir com o conteúdo.
     setupHoverAnimations() {
-        // Cards com efeito de hover
         const hoverCards = document.querySelectorAll('.card, .skill-card, .project-card');
         hoverCards.forEach(card => {
             card.addEventListener('mouseenter', (e) => {
                 card.classList.add('hover-lift');
-                
-                // Efeito de sombra dinâmica
+
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -175,7 +178,6 @@ class PortfolioAnimations {
             });
         });
         
-        // Botões com efeito de ripple
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(button => {
             button.addEventListener('click', function(e) {
@@ -200,15 +202,13 @@ class PortfolioAnimations {
                 
                 this.appendChild(ripple);
                 
-                // Remove após animação
                 setTimeout(() => ripple.remove(), 600);
             });
         });
     }
     
-    // Animações de texto
+    // Digitação no hero chama atenção sem peso de vídeo.
     setupTextAnimations() {
-        // Efeito de digitação no hero
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
             const text = heroTitle.textContent;
@@ -231,9 +231,8 @@ class PortfolioAnimations {
         }
     }
     
-    // Animações de loading
+    // Ícones aparecem em sequência para dar ritmo.
     setupLoadingAnimations() {
-        // Anima tech icons no hero
         const techIcons = document.querySelectorAll('.tech-icon');
         techIcons.forEach((icon, index) => {
             icon.style.animationDelay = `${index * 0.2}s`;
@@ -241,7 +240,7 @@ class PortfolioAnimations {
         });
     }
     
-    // Efeito parallax suave
+    // Parallax simples, sem libs, para evitar custos extras.
     setupParallaxEffect() {
         const hero = document.querySelector('.hero');
         if (!hero) return;
@@ -250,14 +249,12 @@ class PortfolioAnimations {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
             
-            // Move background suavemente
             hero.style.backgroundPosition = `center ${rate}px`;
         });
     }
     
-    // Inicia todos os observadores
+    // Observers separados para manter o controle e poder limpar se necessário.
     startObservers() {
-        // Observer para elementos que entram na viewport
         const viewportObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach(entry => {
@@ -271,7 +268,6 @@ class PortfolioAnimations {
             { threshold: 0.1 }
         );
         
-        // Observa elementos importantes
         document.querySelectorAll('section').forEach(section => {
             viewportObserver.observe(section);
         });
@@ -279,21 +275,19 @@ class PortfolioAnimations {
         this.observers.push(viewportObserver);
     }
     
-    // Limpa observadores (para performance)
+    // Limpeza evita leaks se houver navegação SPA no futuro.
     cleanup() {
         this.observers.forEach(observer => observer.disconnect());
         this.observers = [];
     }
 }
 
-// Inicializa animações quando DOM estiver pronto
+// Inicializa após o DOM para evitar query em elementos inexistentes.
 document.addEventListener('DOMContentLoaded', () => {
     const animations = new PortfolioAnimations();
-    
-    // Expõe globalmente para debug (opcional)
+
     window.portfolioAnimations = animations;
-    
-    // Adiciona CSS para animações dinâmicas
+
     const style = document.createElement('style');
     style.textContent = `
         @keyframes ripple {
@@ -307,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
             animation: fadeInUp 0.8s ease forwards;
         }
         
-        /* Efeito de brilho dinâmico nos cards */
+        /* Brilho dinâmico nos cards para destacar interações */
         .card:hover::before,
         .skill-card:hover::before,
         .project-card:hover::before {
@@ -326,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
 });
 
-// Polyfill para requestAnimationFrame
+// Polyfill por compatibilidade sem dependências externas.
 (function() {
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
