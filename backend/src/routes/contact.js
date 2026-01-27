@@ -1,16 +1,19 @@
+// Rotas do formulário de contato.
 const express = require('express');
 const { validateContact } = require('../middleware/validateContact');
 const { sendContactEmail } = require('../services/emailService');
 
 const router = express.Router();
 
+// Recebe o formulário, valida e envia email.
 router.post('/', validateContact, async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 
-    // Envio síncrono para manter fluxo simples enquanto o volume é baixo.
+    // Envio direto porque o volume é pequeno e fica mais simples.
     const emailResult = await sendContactEmail({ name, email, subject, message });
 
+    // Se o Brevo não estiver configurado, aviso o frontend.
     if (!emailResult.sent) {
       return res.status(500).json({
         success: false,
@@ -23,6 +26,7 @@ router.post('/', validateContact, async (req, res) => {
       email: emailResult
     });
   } catch (error) {
+    // Se der erro, devolvo mensagem genérica para o usuário.
     console.error('Erro ao enviar contato:', error);
     return res.status(500).json({
       success: false,

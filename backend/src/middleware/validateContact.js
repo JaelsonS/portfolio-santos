@@ -1,7 +1,8 @@
+// Regex simples para validar email sem complicar.
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Validação básica para não enviar dados vazios.
 const validateContact = (req, res, next) => {
-  // Validação minimalista: evita payload inválido sem overengineering.
   const { name, email, subject, message } = req.body || {};
   const errors = [];
 
@@ -21,6 +22,7 @@ const validateContact = (req, res, next) => {
     errors.push({ field: 'message', message: 'A mensagem deve ter pelo menos 10 caracteres.' });
   }
 
+  // Se tiver erro, devolvo lista para o frontend mostrar.
   if (errors.length) {
     return res.status(400).json({
       success: false,

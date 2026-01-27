@@ -1,12 +1,14 @@
 # Portfolio — Jaelson Santos
 
-Portfolio pessoal moderno, responsivo e acessível, focado em candidaturas a estágio ou vaga júnior fullstack. O projeto foi organizado para crescimento e inclui backend funcional para envio de contato por email. Links diretos (WhatsApp, LinkedIn, GitHub) são intencionais para manter clareza e simplicidade no contacto.
+Este é o meu portfolio pessoal. Ele é simples, direto e pensado para recrutadores. Organizei o projeto em frontend e backend para ficar mais claro e fácil de manter.
 
-## Objetivo
+## O que eu quis mostrar aqui
 
-Apresentar um perfil profissional com foco em clareza, legibilidade, performance e experiência do recrutador, demonstrando domínio de frontend e backend.
+- Um layout moderno, responsivo e acessível.
+- Um formulário funcional para contato.
+- Links diretos para WhatsApp, LinkedIn e GitHub.
 
-## Stack
+## Stack que usei
 
 **Frontend**
 - HTML5, CSS3, JavaScript (ES6+)
@@ -14,7 +16,7 @@ Apresentar um perfil profissional com foco em clareza, legibilidade, performance
 
 **Backend**
 - Node.js + Express
-- Brevo API (email)
+- Brevo API para enviar email
 
 ## Estrutura do projeto
 
@@ -45,27 +47,24 @@ portfolio-santos/
 └── README.md
 ```
 
-> Nota: o arquivo frontend/styles/main.css importa os estilos existentes em frontend/style para manter compatibilidade sem reescrever toda a base.
-
 ## Como rodar localmente
 
-### 1) Frontend
-Abra o arquivo frontend/index.html com Live Server ou outro servidor estático.
-
-Se o backend estiver em outra URL, atualize o atributo data-api-base no body:
+### Frontend
+- Abra frontend/index.html com Live Server (ou outro servidor estático).
+- Em produção, o frontend usa o Render no atributo data-api-base.
+- Para testar localmente, troque para http://localhost:3001.
 
 ```
-<body data-api-base="http://localhost:3001">
+<body data-api-base="https://portfolio-santos.onrender.com">
 ```
 
-### 2) Backend
-
+### Backend
 1. Entre na pasta backend
 2. Instale dependências
 3. Crie o .env baseado no .env.example
 4. Inicie o servidor
 
-> Nota: o backend assume Node.js 18+ por causa do fetch nativo.
+> Nota: uso Node.js 18+ por causa do fetch nativo.
 
 ## Variáveis de ambiente
 
@@ -83,26 +82,35 @@ BREVO_TO_EMAIL=jaelsonsilva345@gmail.com
 
 ## Como funciona o envio de email
 
-- O endpoint POST /api/contact valida os dados e envia email via Brevo API.
-- Se o Brevo não estiver configurado, o endpoint retorna erro com instruções.
+- O formulário chama o backend (Render) em /api/contact.
+- O backend valida os dados e envia o email pela Brevo API.
 
-## Contato direto via redes
+## Como testar a integração
 
-- WhatsApp, LinkedIn e GitHub são links diretos, sem integração de API.
-- Decisão intencional para reduzir complexidade e deixar o portfolio mais claro para o recrutador.
+**Local**
+- Frontend com Live Server.
+- Backend rodando em http://localhost:3001.
+- No HTML, use data-api-base apontando para localhost.
+
+**Produção**
+- Frontend no Vercel: https://portfolio-santos.vercel.app/
+- Backend no Render: https://portfolio-santos.onrender.com
+- O formulário deve enviar e o Brevo entregar o email.
+
+## Por que links diretos nas redes
+
+Eu preferi links diretos (WhatsApp, LinkedIn e GitHub) porque isso deixa o contato mais simples e rápido. Também evita manutenção extra no backend e deixa o portfolio mais claro para o recrutador.
 
 ## API
 
 ### POST /api/contact
 
-Payload:
-
 ```
 {
-	"name": "Seu Nome",
-	"email": "email@dominio.com",
-	"subject": "Assunto (opcional)",
-	"message": "Sua mensagem"
+  "name": "Seu Nome",
+  "email": "email@dominio.com",
+  "subject": "Assunto (opcional)",
+  "message": "Sua mensagem"
 }
 ```
 
@@ -110,29 +118,27 @@ Resposta de sucesso:
 
 ```
 {
-	"success": true,
-	"email": { "sent": true }
+  "success": true,
+  "email": { "sent": true }
 }
 ```
 
 ## Deploy
 
-**Frontend**: Vercel.
+- **Frontend**: Vercel
+- **Backend**: Render
 
-**Backend**: Render.
+Depois do deploy, atualize o data-api-base no HTML e o CORS_ORIGIN no .env.
 
-Após o deploy do backend, atualize data-api-base para a URL do servidor e ajuste CORS_ORIGIN no .env.
+## Decisões que tomei
 
-## Decisões técnicas
+- Brevo para email: evita configurar SMTP no Render.
+- Links diretos nas redes: menos complexidade e mais clareza.
+- Frontend e backend separados: organização simples e fácil de crescer.
 
-- Uso de Express com validação simples para manter o backend leve e fácil de escalar.
-- Brevo API para email evita configuração de SMTP no Render e simplifica o deploy.
-- Links diretos nas redes reduzem manutenção e mantêm o foco na mensagem.
-- Separação de serviços/rotas facilita evolução sem reescrever o frontend.
+## Próximos passos
 
-## Próximos passos sugeridos
-
-- Adicionar mais projetos e casos de estudo.
-- Criar testes básicos para validação do endpoint.
-- Separar componentes HTML caso migre para um framework (React/Next.js).
+- Adicionar mais cases e projetos.
+- Criar testes básicos do endpoint.
+- Migrar para React/Next.js quando fizer sentido.
 

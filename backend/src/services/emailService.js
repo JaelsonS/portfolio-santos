@@ -1,7 +1,8 @@
+// Serviço de email usando Brevo (mais simples que SMTP).
 const BREVO_ENDPOINT = 'https://api.brevo.com/v3/smtp/email';
 
+// Lê variáveis do .env para não deixar dados sensíveis no código.
 const getBrevoConfig = () => {
-  // Brevo evita configurar SMTP no Render e simplifica o deploy.
   const { BREVO_API_KEY, BREVO_SENDER_EMAIL, BREVO_SENDER_NAME, BREVO_TO_EMAIL } = process.env;
 
   if (!BREVO_API_KEY || !BREVO_SENDER_EMAIL || !BREVO_TO_EMAIL) {
@@ -16,14 +17,16 @@ const getBrevoConfig = () => {
   };
 };
 
+// Envia o email com os dados do formulário.
 const sendContactEmail = async ({ name, email, subject, message }) => {
   const config = getBrevoConfig();
 
+  // Se faltar config, aviso o backend para responder com erro.
   if (!config) {
     return { sent: false, reason: 'Brevo não configurado.' };
   }
 
-  // Payload direto para reduzir risco de erros e manter suporte fácil.
+  // Payload simples para evitar campos desnecessários.
   const payload = {
     sender: {
       email: config.senderEmail,
@@ -38,7 +41,7 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
     textContent: `Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`
   };
 
-  // Fetch nativo mantém dependências menores e o bundle do backend simples.
+  // Fetch nativo para manter o backend leve.
   const response = await fetch(BREVO_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -48,6 +51,7 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
     body: JSON.stringify(payload)
   });
 
+  // Se o Brevo falhar, mostro o erro para debug no log.
   if (!response.ok) {
     const errorBody = await response.text();
     throw new Error(`Brevo error: ${response.status} ${errorBody}`);

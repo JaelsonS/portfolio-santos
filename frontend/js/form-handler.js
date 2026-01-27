@@ -21,13 +21,15 @@ class FormHandler {
     }
 
     getApiBase() {
-        // Prefiro data-api-base no HTML para trocar ambiente sem rebuild (Vercel/Render).
+        // Uso data-api-base para trocar o backend sem mexer no JS.
         const dataBase = document.body ? document.body.dataset.apiBase : '';
         if (dataBase) return dataBase;
-        if (window.location && window.location.origin && window.location.origin !== 'null') {
-            return window.location.origin;
-        }
-        return 'http://localhost:3001';
+
+        // Se estiver local, aponto para localhost para facilitar testes.
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (isLocal) return 'http://localhost:3001';
+
+        return window.location.origin;
     }
     
     // Contact é o formulário principal; fica aqui para facilitar manutenção.
