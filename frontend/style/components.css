@@ -744,7 +744,7 @@
     flex-shrink: 0;
 }
 
-.contact-item h4 {
+.contact-item h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--dark);

@@ -60,4 +60,52 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
   return { sent: true };
 };
 
-module.exports = { sendContactEmail };
+// Envia um email de resposta automática para quem preencheu o formulário.
+const sendAutoReply = async ({ name, email }) => {
+  const config = getBrevoConfig();
+
+  if (!config) {
+    return { sent: false, reason: 'Brevo não configurado.' };
+  }
+
+  const portfolioUrl = process.env.PORTFOLIO_URL || 'https://portfolio-santos.vercel.app';
+  const githubUrl = process.env.GITHUB_URL || 'https://github.com/JaelsonS';
+  const linkedinUrl = process.env.LINKEDIN_URL || 'https://www.linkedin.com/in/jaelson-santos-8628b52a4/';
+  const whatsappUrl = process.env.WHATSAPP_URL || 'https://wa.me/351916447990';
+
+  const payload = {
+    sender: {
+      email: config.senderEmail,
+      name: config.senderName
+    },
+    to: [{ email }],
+    subject: 'Obrigado pelo contato! 🙌',
+    textContent:
+      `Olá ${name || 'tudo bem'}!\n\n` +
+      'Obrigado por entrar em contato pelo meu portfolio. Vou responder o mais rápido possível.\n\n' +
+      'Enquanto isso, deixo meus links diretos abaixo:\n' +
+      `WhatsApp: ${whatsappUrl}\n` +
+      `LinkedIn: ${linkedinUrl}\n` +
+      `GitHub: ${githubUrl}\n` +
+      `Portfolio: ${portfolioUrl}\n\n` +
+      'Abraço,\nJaelson Santos'
+  };
+
+  const response = await fetch(BREVO_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.apiKey
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Brevo error (auto-reply): ${response.status} ${errorBody}`);
+  }
+
+  return { sent: true };
+};
+
+module.exports = { sendContactEmail, sendAutoReply };

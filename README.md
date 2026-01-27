@@ -78,12 +78,18 @@ BREVO_API_KEY=seu_token_brevo
 BREVO_SENDER_EMAIL=seu_email@dominio.com
 BREVO_SENDER_NAME=Portfolio Jaelson Santos
 BREVO_TO_EMAIL=jaelsonsilva345@gmail.com
+
+PORTFOLIO_URL=https://portfolio-santos.vercel.app
+GITHUB_URL=https://github.com/JaelsonS
+LINKEDIN_URL=https://www.linkedin.com/in/jaelson-santos-8628b52a4/
+WHATSAPP_URL=https://wa.me/351916447990
 ```
 
 ## Como funciona o envio de email
 
 - O formulário chama o backend (Render) em /api/contact.
 - O backend valida os dados e envia o email pela Brevo API.
+- Depois disso, a pessoa recebe um email automático de confirmação com meus links.
 
 ## Como testar a integração
 
@@ -119,7 +125,8 @@ Resposta de sucesso:
 ```
 {
   "success": true,
-  "email": { "sent": true }
+  "email": { "sent": true },
+  "autoReply": { "sent": true }
 }
 ```
 

@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaelson Santos | Desenvolvedor Full Stack</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="style" href="styles/main.css">
+    <link rel="preload" as="image" href="assets/images/jaelson-240.jpg">
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"></noscript>
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
     <link rel="stylesheet" href="styles/main.css">
     <meta name="description" content="Portfolio de Jaelson Santos - Desenvolvedor Full Stack em Leiria, Portugal. Buscando oportunidade como estagiário.">
     <meta name="keywords" content="desenvolvedor full stack, javascript, react, node.js, estagiário, leiria, portugal">
@@ -92,9 +101,16 @@
                         <div class="profile-container">
                             <div class="profile-frame">
                                 <img 
-                                    src="assets/images/jaelson.jpeg" 
+                                    src="assets/images/jaelson-240.jpg" 
+                                    srcset="assets/images/jaelson-240.jpg 240w, assets/images/jaelson-320.jpg 320w, assets/images/jaelson-480.jpg 480w, assets/images/jaelson.jpeg 700w"
+                                    sizes="(max-width: 576px) 240px, (max-width: 768px) 280px, (max-width: 992px) 300px, 320px"
                                     alt="Jaelson Santos - Desenvolvedor Full Stack" 
                                     class="profile-photo"
+                                    width="320"
+                                    height="320"
+                                    fetchpriority="high"
+                                    decoding="async"
+                                    loading="eager"
                                     onerror="this.src='https://via.placeholder.com/400x400/1a237e/ffffff?text=JS'"
                                 >
                                 <div class="profile-badge">
@@ -103,7 +119,7 @@
                             </div>
                             
                             <div class="tech-stack">
-                                <h4 class="tech-title">Stack Principal</h4>
+                                <h3 class="tech-title">Stack Principal</h3>
                                 <div class="tech-icons">
                                     <div class="tech-icon" data-tooltip="HTML5">
                                         <i class="fab fa-html5"></i>
@@ -483,8 +499,8 @@
                                 <a href="https://saasude.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                                     <i class="fas fa-external-link-alt me-2"></i>Visitar Site
                                 </a>
-                                <a href="https://github.com/JaelsonS/saasude" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                                    <i class="fab fa-github me-2"></i>Código
+                                <a href="https://github.com/JaelsonS/saasude" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Código do SaaSude">
+                                    <i class="fab fa-github me-2"></i>Código SaaSude
                                 </a>
                             </div>
                         </div>
@@ -514,8 +530,8 @@
                                 <button class="btn btn-primary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                                     <i class="fas fa-map-marker-alt me-2"></i>Você está aqui
                                 </button>
-                                <a href="https://github.com/JaelsonS/portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                                    <i class="fab fa-github me-2"></i>Código
+                                <a href="https://github.com/JaelsonS/portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="Código do Portfolio">
+                                    <i class="fab fa-github me-2"></i>Código Portfolio
                                 </a>
                             </div>
                         </div>
@@ -555,7 +571,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
-                                <h4>Email</h4>
+                                <h3>Email</h3>
                                 <a href="mailto:jaelsonsilva345@gmail.com" class="contact-link">
                                     jaelsonsilva345@gmail.com
                                 </a>
@@ -566,7 +582,7 @@
                                 <i class="fab fa-whatsapp"></i>
                             </div>
                             <div>
-                                <h4>WhatsApp</h4>
+                                <h3>WhatsApp</h3>
                                 <a href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" class="contact-link">
                                     +351 916 447 990
                                 </a>
@@ -577,7 +593,7 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4>Localização</h4>
+                                <h3>Localização</h3>
                                 <p>Leiria, Portugal</p>
                             </div>
                         </div>
@@ -586,7 +602,7 @@
                                 <i class="fab fa-linkedin"></i>
                             </div>
                             <div>
-                                <h4>LinkedIn</h4>
+                                <h3>LinkedIn</h3>
                                 <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer" class="contact-link">
                                     /jaelson-santos
                                 </a>
@@ -597,7 +613,7 @@
                                 <i class="fab fa-github"></i>
                             </div>
                             <div>
-                                <h4>GitHub</h4>
+                                <h3>GitHub</h3>
                                 <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer" class="contact-link">
                                     /JaelsonS
                                 </a>

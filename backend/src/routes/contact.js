@@ -1,7 +1,7 @@
 // Rotas do formulário de contato.
 const express = require('express');
 const { validateContact } = require('../middleware/validateContact');
-const { sendContactEmail } = require('../services/emailService');
+const { sendContactEmail, sendAutoReply } = require('../services/emailService');
 
 const router = express.Router();
 
@@ -21,9 +21,13 @@ router.post('/', validateContact, async (req, res) => {
       });
     }
 
+    // Resposta automática para confirmar que o contato foi recebido.
+    const autoReplyResult = await sendAutoReply({ name, email });
+
     return res.status(200).json({
       success: true,
-      email: emailResult
+      email: emailResult,
+      autoReply: autoReplyResult
     });
   } catch (error) {
     // Se der erro, devolvo mensagem genérica para o usuário.
