@@ -152,6 +152,10 @@
     .contact-form-container {
         padding: 1.5rem;
     }
+
+    .contact-info {
+        text-align: center;
+    }
     
     .about-icon,
     .skill-icon {
@@ -189,6 +193,7 @@
         flex-direction: column;
         text-align: center;
         gap: 0.5rem;
+        align-items: center;
     }
     
     .contact-icon {
