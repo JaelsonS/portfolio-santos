@@ -65,7 +65,11 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
     throw new Error(`Brevo error: ${response.status} ${errorBody}`);
   }
 
-  return { sent: true };
+  const responseBody = await response.json().catch(() => ({}));
+  return {
+    sent: true,
+    messageId: responseBody?.messageId
+  };
 };
 
 // Envia um email de resposta automática para quem preencheu o formulário.
@@ -113,7 +117,11 @@ const sendAutoReply = async ({ name, email }) => {
     throw new Error(`Brevo error (auto-reply): ${response.status} ${errorBody}`);
   }
 
-  return { sent: true };
+  const responseBody = await response.json().catch(() => ({}));
+  return {
+    sent: true,
+    messageId: responseBody?.messageId
+  };
 };
 
 module.exports = { sendContactEmail, sendAutoReply };
