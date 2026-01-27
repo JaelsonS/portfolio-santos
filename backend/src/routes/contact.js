@@ -15,9 +15,16 @@ router.post('/', validateContact, async (req, res) => {
 
     // Se o Brevo não estiver configurado, aviso o frontend.
     if (!emailResult.sent) {
+      const missing = emailResult.missing || [];
       return res.status(500).json({
         success: false,
-        message: 'Envio não configurado. Configure o Brevo antes de usar.'
+        message: missing.length
+          ? 'Configuração do envio incompleta no servidor.'
+          : 'Envio não configurado. Tente novamente mais tarde.',
+        errors: missing.map((name) => ({
+          field: name,
+          message: `Variável ${name} não configurada.`
+        }))
       });
     }
 
@@ -34,7 +41,11 @@ router.post('/', validateContact, async (req, res) => {
     console.error('Erro ao enviar contato:', error);
     return res.status(500).json({
       success: false,
-      message: 'Não foi possível enviar sua mensagem. Tente novamente.'
+      message: 'Falha ao enviar. Verifique a configuração e tente novamente.',
+      errors: [{
+        field: 'brevo',
+        message: error?.message || 'Erro desconhecido no serviço de email.'
+      }]
     });
   }
 });

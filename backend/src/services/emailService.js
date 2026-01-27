@@ -4,26 +4,34 @@ const BREVO_ENDPOINT = 'https://api.brevo.com/v3/smtp/email';
 // Lê variáveis do .env para não deixar dados sensíveis no código.
 const getBrevoConfig = () => {
   const { BREVO_API_KEY, BREVO_SENDER_EMAIL, BREVO_SENDER_NAME, BREVO_TO_EMAIL } = process.env;
+  const missing = [];
 
-  if (!BREVO_API_KEY || !BREVO_SENDER_EMAIL || !BREVO_TO_EMAIL) {
-    return null;
+  if (!BREVO_API_KEY) missing.push('BREVO_API_KEY');
+  if (!BREVO_SENDER_EMAIL) missing.push('BREVO_SENDER_EMAIL');
+  if (!BREVO_TO_EMAIL) missing.push('BREVO_TO_EMAIL');
+
+  if (missing.length) {
+    return { config: null, missing };
   }
 
   return {
-    apiKey: BREVO_API_KEY,
-    senderEmail: BREVO_SENDER_EMAIL,
-    senderName: BREVO_SENDER_NAME || 'Portfolio Jaelson Santos',
-    toEmail: BREVO_TO_EMAIL
+    config: {
+      apiKey: BREVO_API_KEY,
+      senderEmail: BREVO_SENDER_EMAIL,
+      senderName: BREVO_SENDER_NAME || 'Portfolio Jaelson Santos',
+      toEmail: BREVO_TO_EMAIL
+    },
+    missing: []
   };
 };
 
 // Envia o email com os dados do formulário.
 const sendContactEmail = async ({ name, email, subject, message }) => {
-  const config = getBrevoConfig();
+  const { config, missing } = getBrevoConfig();
 
   // Se faltar config, aviso o backend para responder com erro.
   if (!config) {
-    return { sent: false, reason: 'Brevo não configurado.' };
+    return { sent: false, reason: 'Brevo não configurado.', missing };
   }
 
   // Payload simples para evitar campos desnecessários.
@@ -62,10 +70,10 @@ const sendContactEmail = async ({ name, email, subject, message }) => {
 
 // Envia um email de resposta automática para quem preencheu o formulário.
 const sendAutoReply = async ({ name, email }) => {
-  const config = getBrevoConfig();
+  const { config, missing } = getBrevoConfig();
 
   if (!config) {
-    return { sent: false, reason: 'Brevo não configurado.' };
+    return { sent: false, reason: 'Brevo não configurado.', missing };
   }
 
   const portfolioUrl = process.env.PORTFOLIO_URL || 'https://portfolio-santos.vercel.app';
