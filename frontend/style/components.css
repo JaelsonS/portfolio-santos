@@ -620,6 +620,10 @@
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
+.image-placeholder.clinic {
+    background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+}
+
 .project-content {
     padding: 2rem;
 }
