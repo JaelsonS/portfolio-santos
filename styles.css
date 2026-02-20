@@ -57,10 +57,9 @@ a:focus-visible {
     justify-content: center;
 }
 
-.icone svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
+.icone i {
+    font-size: 18px;
+    line-height: 1;
 }
 
 .link-salto {
@@ -214,6 +213,53 @@ main {
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.menu-item {
+    position: relative;
+}
+
+.link-menu-dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.submenu-projetos {
+    list-style: none;
+    display: grid;
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+    padding: 0.6rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, max-height 0.2s ease;
+}
+
+.menu-item:hover .submenu-projetos,
+.menu-item:focus-within .submenu-projetos {
+    max-height: 320px;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.link-submenu {
+    display: block;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.link-submenu:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
 }
 
 .link-menu.active,
@@ -473,10 +519,9 @@ main {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-.icone-projeto svg {
-    width: 32px;
-    height: 32px;
-    fill: currentColor;
+.icone-projeto i {
+    font-size: 30px;
+    line-height: 1;
 }
 
 .cartao-video {
@@ -729,6 +774,27 @@ main {
         width: auto;
         padding: 0;
         margin-left: auto;
+        overflow: visible;
+    }
+
+    .submenu-projetos {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        min-width: 220px;
+        margin-top: 0;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+    }
+
+    .link-submenu {
+        color: var(--dark);
+    }
+
+    .link-submenu:hover {
+        background: var(--light);
+        color: var(--primary);
     }
 
     .grade-destaque {
