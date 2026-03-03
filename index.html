@@ -2,7 +2,7 @@
 <html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Jaelson Santos | Desenvolvedor Full Stack</title>
     <link rel="preload" as="style" href="styles.css">
     <link rel="preload" as="image" href="assets/images/jaelson.jpg">
@@ -15,7 +15,7 @@
     <meta property="og:description" content="Portfolio profissional de Jaelson Santos - Desenvolvedor Full Stack">
     <meta property="og:image" content="assets/images/jaelson.jpg">
     <meta property="og:type" content="website">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <a href="#conteudo-principal" class="link-salto">Saltar para conteúdo</a>
@@ -29,7 +29,7 @@
                     </span>
                 </a>
                 <button class="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
-                    ☰
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
             <ul class="menu-principal" id="menu-principal">
@@ -46,6 +46,7 @@
                         <li><a class="link-submenu" href="https://future-taupe-nine.vercel.app/" target="_blank" rel="noopener noreferrer">Future Clinic</a></li>
                         <li><a class="link-submenu" href="https://saude-com-amor.vercel.app/" target="_blank" rel="noopener noreferrer">Saúde com Amor</a></li>
                         <li><a class="link-submenu" href="https://imigran-construtora.vercel.app/" target="_blank" rel="noopener noreferrer">Imigran Construtora</a></li>
+                        <li><a class="link-submenu" href="https://club-flix.vercel.app/" target="_blank" rel="noopener noreferrer">Club Flix</a></li>
                     </ul>
                 </li>
                 <li><a class="link-menu" href="#contato">Contato</a></li>
@@ -53,59 +54,51 @@
         </div>
     </nav>
 </header>
-    <main id="conteudo-principal">
-        <section id="inicio" class="destaque" data-revelar>
+<main id="conteudo-principal">
+    <section id="inicio" class="destaque is-visible" data-revelar="">
+        <div class="destaque-overlay"></div>
             <div class="caixa">
                 <div class="grade-destaque">
                     <div class="destaque-conteudo">
                         <h1 class="destaque-titulo">
-                            Olá, eu sou o <span class="texto-destaque">Jaelson</span>
+                        Olá, eu sou o <span class="texto-destaque">Jaelson</span>
                         </h1>
                         <h2 class="destaque-subtitulo">Desenvolvedor Fullstack em formação | Foco em soluções web eficientes e centradas no utilizador</h2>
                         <p class="destaque-descricao">
-                            Estou a construir minha carreira em desenvolvimento web, com experiência prática em produtos SaaS
-                            e integração de sistemas. Busco oportunidades para aplicar minhas habilidades em projetos reais,
-                            aprender e contribuir com soluções de impacto.
+                        Estou a construir minha carreira em desenvolvimento web, com experiência prática em produtos SaaS
+                        e integração de sistemas. Busco oportunidades para aplicar minhas habilidades em projetos reais,
+                        aprender e contribuir com soluções de impacto.
                         </p>
 
                         <div class="destaque-botoes">
-                            <a href="#contato" class="botao botao-primario">Entrar em Contato</a>
-                            <a href="#projetos" class="botao botao-contorno">Ver Projetos</a>
-                            <a href="assets/docs/JaelsonDev2026%20(2).pdf" class="botao botao-contorno" download aria-label="Baixar currículo em PDF">
-                                Baixar Currículo
-                            </a>
+                        <a href="#contato" class="botao botao-primario">Entrar em Contato</a>
+                        <a href="#projetos" class="botao botao-contorno">Ver Projetos</a>
+                        <a href="assets/docs/JaelsonDev2026%20(2).pdf" class="botao botao-contorno" download="" aria-label="Baixar currículo em PDF">
+                        Baixar Currículo
+                        </a>
                         </div>
 
                         <div class="destaque-localizacao">
-                            <span>Leiria, Portugal</span>
+                        <span>Leiria, Portugal</span>
                         </div>
                         <div class="destaque-redes" aria-label="Links sociais">
-                            <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer">
-                                <span class="icone" aria-hidden="true"><i class="fa-brands fa-linkedin-in"></i></span>
-                                LinkedIn
-                            </a>
-                            <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer">
-                                <span class="icone" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
-                                GitHub
-                            </a>
+                        <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer">
+                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-linkedin-in"></i></span>
+                        LinkedIn
+                        </a>
+                        <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer">
+                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+                        GitHub
+                        </a>
                         </div>
-                    </div>
+                </div>
 
-                    <div>
-                        <img
-                            src="assets/images/jaelson.jpg"
-                            alt="Jaelson Santos - Desenvolvedor Full Stack"
-                            class="foto-perfil"
-                            width="320"
-                            height="320"
-                            fetchpriority="high"
-                            decoding="async"
-                            loading="eager"
-                        >
-                    </div>
+                <div>
+                <img src="assets/images/jaelson.jpg" alt="Jaelson Santos - Desenvolvedor Full Stack" class="foto-perfil" width="320" height="320" fetchpriority="high" decoding="async" loading="eager">
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <section id="sobre" class="secao" data-revelar>
             <div class="caixa">
@@ -123,10 +116,13 @@
                         <p class="texto-cartao">
                             Sou estudante de <strong>Fullstack</strong> na Master D (Coimbra), com foco em criar aplicações
                             web modernas e bem estruturadas.
+                            Gostaria de iniciar minha carreira como estagiário ou júnior, contribuindo para projetos reais e
+                            aprendendo com profissionais experientes.
                         </p>
                         <p class="texto-cartao">
                             Venho de um background em <strong>vendas e liderança</strong>, atualmente em transição para tecnologia, onde aplico minha disciplina, foco e paixão por aprender continuamente.
                         </p>
+
                     </article>
 
                     <article class="cartao" data-revelar>
@@ -262,12 +258,9 @@
                                 <span class="tag-tecnologia">React 19</span>
                                 <span class="tag-tecnologia">TypeScript</span>
                                 <span class="tag-tecnologia">Node.js</span>
-                                <span class="tag-tecnologia">MongoDB</span>
-                                <span class="tag-tecnologia">Stripe</span>
                             </div>
                             <div class="links-projeto">
                                 <a href="https://saasude.com" target="_blank" rel="noopener noreferrer" class="botao botao-primario">Visitar Site</a>
-                                <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer" class="botao botao-contorno" aria-label="Código do SaaSude">Código SaaSude</a>
                             </div>
                         </div>
                     </article>
@@ -340,6 +333,29 @@
                             </div>
                         </div>
                     </article>
+                     <article class="cartao cartao-projeto" data-revelar>
+                        <div class="status-projeto">Online</div>
+                        <div class="imagem-projeto" aria-hidden="true">
+                            <span class="icone-projeto">
+                                <i class="fa-solid fa-film" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="conteudo-projeto">
+                            <h3 class="titulo-projeto">Club Flix</h3>
+                            <p class="descricao-projeto">
+                              Site Club Flix, um projeto de streaming de filmes e séries, com interface moderna e responsiva. Desenvolvido com HTML, CSS e JavaScript, focado em experiência do utilizador e performance.
+                            </p>
+                            <div class="tecnologias-projeto">
+                                <span class="tag-tecnologia">HTML</span>
+                                <span class="tag-tecnologia">CSS</span>
+                                <span class="tag-tecnologia">React</span>
+                                <span class="tag-tecnologia">API</span>
+                            </div>
+                            <div class="links-projeto">
+                                <a href="https://club-flix.vercel.app/" target="_blank" rel="noopener noreferrer" class="botao botao-primario">Ver Projeto</a>
+                            </div>
+                        </div>
+                    </article>
                     <article class="cartao cartao-projeto" data-revelar>
                         <div class="status-projeto">Online</div>
                         <div class="imagem-projeto">
@@ -348,7 +364,7 @@
                         <div class="conteudo-projeto">
                             <h3 class="titulo-projeto">Portfolio Profissional</h3>
                             <p class="descricao-projeto">
-                                Portfolio moderno e acessível, com foco em performance, clareza e experiência do recrutador.
+                                Portfolio moderno e acessível, com foco em performance, clareza e experiência do recrutador. Desenvolvido com HTML, CSS e JavaScript, seguindo as melhores práticas de desenvolvimento web.
                             </p>
                             <div class="tecnologias-projeto">
                                 <span class="tag-tecnologia">HTML</span>
@@ -512,7 +528,7 @@
 
     <a class="whatsapp-flutuante" href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
         <span class="icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
-        WhatsApp
+        <span>WhatsApp</span>
     </a>
 
     <script defer src="main.js"></script>

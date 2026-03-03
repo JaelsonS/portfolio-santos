@@ -1,6 +1,5 @@
 const PortfolioApp = {
     init() {
-        // Aqui eu inicio todas as funções principais do site.
         this.initMenuToggle();
         this.initSmoothScroll();
         this.initActiveMenu();
@@ -11,7 +10,6 @@ const PortfolioApp = {
     },
 
     initMenuToggle() {
-        // Controle do menu no mobile.
         const toggle = document.querySelector('.botao-menu');
         const menu = document.querySelector('.menu-principal');
         if (!toggle || !menu) return;
@@ -20,6 +18,7 @@ const PortfolioApp = {
             const isOpen = menu.classList.toggle('is-open');
             toggle.setAttribute('aria-expanded', String(isOpen));
             toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+            toggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
         menu.querySelectorAll('a').forEach(link => {
@@ -27,6 +26,7 @@ const PortfolioApp = {
                 menu.classList.remove('is-open');
                 toggle.setAttribute('aria-expanded', 'false');
                 toggle.setAttribute('aria-label', 'Abrir menu');
+                toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
             });
         });
 
@@ -36,12 +36,12 @@ const PortfolioApp = {
             menu.classList.remove('is-open');
             toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-label', 'Abrir menu');
+            toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
             toggle.focus();
         });
     },
 
     initSmoothScroll() {
-        // Scroll suave, mas respeitando acessibilidade.
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
@@ -63,7 +63,6 @@ const PortfolioApp = {
     },
 
     initActiveMenu() {
-        // Deixo o link ativo conforme a seção atual.
         const navLinks = Array.from(document.querySelectorAll('.link-menu'));
         const sections = Array.from(document.querySelectorAll('section[id]'));
         if (!navLinks.length || !sections.length) return;
@@ -97,7 +96,6 @@ const PortfolioApp = {
     },
 
     initForm() {
-        // Validação simples do formulário.
         const form = document.getElementById('formularioContato');
         if (!form) return;
 
@@ -199,7 +197,6 @@ const PortfolioApp = {
     },
 
     initReveal() {
-        // Animações simples quando os cards aparecem.
         const targets = document.querySelectorAll('[data-revelar]');
         if (!targets.length || !('IntersectionObserver' in window)) {
             targets.forEach(target => target.classList.add('is-visible'));
@@ -222,7 +219,6 @@ const PortfolioApp = {
     },
 
     initHabilidades() {
-        // Eu uso o data-level para preencher as barras.
         const barras = document.querySelectorAll('.nivel-habilidade');
         barras.forEach(barra => {
             const nivel = barra.dataset.level;
@@ -232,7 +228,6 @@ const PortfolioApp = {
     },
 
     initVideoEmbed() {
-        // Troca a capa pelo iframe quando o usuário clicar.
         const container = document.querySelector('.video-embed');
         if (!container) return;
 
