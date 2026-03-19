@@ -31,7 +31,7 @@ body {
     overflow-x: hidden;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: var(--dark);
-    background: #ffffff;
+    background: var(--primary);
     line-height: 1.6;
     padding-top: var(--header-height);
 }
@@ -90,6 +90,7 @@ main {
     display: block;
     width: 100%;
     overflow-x: hidden;
+    background: #ffffff;
 }
 
 .secao {
@@ -155,11 +156,12 @@ main {
 .barra-navegacao {
     position: fixed;
     inset: 0 0 auto 0;
-    background: rgba(26, 35, 126, 0.98);
+    background: var(--primary);
     color: #fff;
     z-index: 1000;
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
     width: 100%;
+    min-height: var(--header-height);
 }
 
 .barra-navegacao-conteudo {
@@ -167,7 +169,8 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1rem 0;
+    min-height: var(--header-height);
+    padding: 0;
     width: 100%;
 }
 
@@ -217,7 +220,7 @@ main {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    background: rgba(26, 35, 126, 0.98);
+    background: var(--primary);
     border-radius: 0 0 12px 12px;
 }
 
@@ -409,7 +412,9 @@ main {
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     overflow: hidden;
 }
@@ -452,6 +457,7 @@ main {
     display: grid;
     gap: 1.5rem;
     width: 100%;
+    align-items: stretch;
 }
 
 .grade-contato {
@@ -501,7 +507,6 @@ main {
     display: flex;
     flex-direction: column;
     height: 100%;
-    min-height: 600px; /* Altura mínima consistente */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     background: #fff;
     border: 1px solid var(--border);
@@ -514,23 +519,37 @@ main {
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
-.cartao-projeto .links-projeto {
+.cartao-projeto .conteudo-projeto {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.85rem;
+    flex: 1;
+}
+
+.cartao-projeto .titulo-projeto {
+    margin-bottom: 0;
+    line-height: 1.3;
+    min-height: 3.1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cartao-projeto .links-projeto {
+    margin-top: auto;
 }
 
 .tecnologias-projeto {
-   display: flex;
+    display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 1rem 0;
-    min-height: 32px; /* Altura mínima para as tags */
+    margin: 0;
+    min-height: 2.25rem;
 }
 
 .tag-tecnologia {
-   background: var(--light);
+    background: var(--light);
     border: 1px solid var(--border);
     border-radius: 999px;
     padding: 0.25rem 0.75rem;
@@ -541,7 +560,8 @@ main {
 }
 
 .status-projeto {
-     display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--primary);
@@ -553,10 +573,12 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: 1px solid rgba(255, 202, 40, 0.3);
+    min-height: 1.9rem;
+    white-space: nowrap;
 }
 
 .imagem-projeto {
-   height: 140px;
+    height: 160px;
     border-radius: 12px;
     background: linear-gradient(135deg, #eef1f7, #f8f9fc);
     margin-bottom: 1rem;
@@ -594,8 +616,8 @@ main {
     line-height: 1;
 }
 .links-projeto {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
     margin-top: auto; /* Empurra os botões para o final */
     padding-top: 1rem;
@@ -603,10 +625,26 @@ main {
 }
 
 .links-projeto .botao {
-    flex: 1 1 auto;
-    min-width: 120px;
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    min-height: 44px;
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
+}
+
+.links-projeto .botao:only-child {
+    grid-column: 1 / 2;
+}
+
+.descricao-projeto {
+    margin: 0;
+    line-height: 1.55;
+    line-clamp: 5;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 
@@ -746,57 +784,22 @@ main {
     .grade-projetos {
         grid-template-columns: repeat(2, 1fr);
     }
-    
-    .cartao-projeto {
-        min-height: 620px;
-    }
-    
 }
 
 @media (min-width: 1024px) {
     .grade-projetos {
         grid-template-columns: repeat(3, 1fr);
     }
-    
-    .cartao-projeto {
-        min-height: 580px; /* Um pouco menor em telas muito grandes */
-    }
-}
-
-/* Ajuste para cards com muito texto */
-.descricao-projeto {
-    max-height: 120px; /* Altura máxima para a descrição */
-    overflow-y: auto; /* Scroll se necessário, mas raramente será usado */
-    padding-right: 0.25rem;
-}
-
-.descricao-projeto::-webkit-scrollbar {
-    width: 4px;
-}
-
-.descricao-projeto::-webkit-scrollbar-track {
-    background: var(--light);
-    border-radius: 4px;
-}
-
-.descricao-projeto::-webkit-scrollbar-thumb {
-    background: var(--gray);
-    border-radius: 4px;
 }
 
 /* Versão para mobile */
 @media (max-width: 767px) {
-    .cartao-projeto {
-        min-height: auto; /* Altura automática em mobile */
-        height: auto;
-    }
-    
     .descricao-projeto {
-        max-height: none;
-        overflow: visible;
+        display: block;
     }
     
     .links-projeto {
+        display: flex;
         flex-direction: column;
     }
     

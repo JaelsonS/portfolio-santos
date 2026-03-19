@@ -67,6 +67,8 @@ const PortfolioApp = {
         const sections = Array.from(document.querySelectorAll('section[id]'));
         if (!navLinks.length || !sections.length) return;
 
+        let ticking = false;
+
         const updateActive = () => {
             const scrollPosition = window.scrollY + 120;
             let currentId = '';
@@ -90,9 +92,18 @@ const PortfolioApp = {
             });
         };
 
+        const requestUpdate = () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                updateActive();
+                ticking = false;
+            });
+        };
+
         updateActive();
-        window.addEventListener('scroll', updateActive);
-        window.addEventListener('resize', updateActive);
+        window.addEventListener('scroll', requestUpdate, { passive: true });
+        window.addEventListener('resize', requestUpdate);
     },
 
     initForm() {

@@ -25,6 +25,7 @@ portfolio-santos/
 ├── assets/
 │   ├── images/
 │   │   ├── jaelson.jpg
+│   │   ├── log0.png
 │   │   └── saasude.svg
 │   └── docs/
 │       ├── apresentacao.vtt
@@ -39,13 +40,16 @@ portfolio-santos/
 ## Formulário (Formspree)
 
 - Endpoint configurado no HTML: https://formspree.io/f/xzdapvgl
-- Para testes locais, libere o dominio no painel do Formspree.
+- Para testes locais, libere o domínio no painel do Formspree.
 
 ## Projetos em destaque
 
 - SaaSude.com
 - Future Clinic (Cliente piloto)
-- Saude com Amor (Cliente piloto)
+- Saúde com Amor (Cliente piloto)
+- Imigran Construtora
+- Club Flix
+- The Code Rockers Website
 - Portfolio Profissional
 
 ## Deploy
