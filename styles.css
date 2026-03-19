@@ -751,9 +751,6 @@ main {
         min-height: 620px;
     }
     
-    .descricao-projeto {
-        -webkit-line-clamp: 5; /* Mais linhas em telas maiores */
-    }
 }
 
 @media (min-width: 1024px) {
@@ -796,7 +793,6 @@ main {
     
     .descricao-projeto {
         max-height: none;
-        -webkit-line-clamp: none;
         overflow: visible;
     }
     
