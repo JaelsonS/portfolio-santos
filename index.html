@@ -3,85 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1a237e">
+    <link rel="canonical" href="/">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
     <title>Jaelson Santos | Desenvolvedor Full Stack</title>
     <link rel="preload" as="style" href="styles.css">
     <link rel="preload" as="image" href="assets/images/jaelson.jpg">
+    <link rel="preload" as="image" href="assets/images/hero-destaque.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" media="print" onload="this.media='all'" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
-    <meta name="description" content="Portfolio de Jaelson Santos - Desenvolvedor Full Stack em Leiria, Portugal. Buscando oportunidade como estagiário.">
-    <meta name="keywords" content="desenvolvedor full stack, javascript, react, node.js, estagiário, leiria, portugal">
+    <meta name="description" content="Portfolio de Jaelson Santos - Desenvolvedor Full Stack em Coimbra, Portugal. Foco em produtos digitais, experiência do utilizador e soluções reais.">
+    <meta name="keywords" content="desenvolvedor full stack, javascript, react, next.js, bootstrap, supabase, mongodb, php, coimbra, portugal">
     <meta name="author" content="Jaelson Santos">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231a237e'/><text x='50%25' y='54%25' text-anchor='middle' font-size='32' font-family='Inter, Arial, sans-serif' fill='white' font-weight='700'>JS</text></svg>">
     <meta property="og:title" content="Jaelson Santos | Desenvolvedor Full Stack">
     <meta property="og:description" content="Portfolio profissional de Jaelson Santos - Desenvolvedor Full Stack">
-    <meta property="og:image" content="assets/images/jaelson.jpg">
+        <meta property="og:image" content="assets/images/jaelson.jpg">
+        <meta property="og:url" content="/">
+        <meta property="og:locale" content="pt_PT">
     <meta property="og:type" content="website">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Jaelson Santos | Desenvolvedor Full Stack">
+        <meta name="twitter:description" content="Portfolio profissional de Jaelson Santos com foco em soluções reais e experiência do utilizador.">
+        <meta name="twitter:image" content="assets/images/jaelson.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous">
+    </noscript>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Jaelson Santos",
+            "jobTitle": "Desenvolvedor Full Stack",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Coimbra",
+                "addressCountry": "PT"
+            },
+            "email": "mailto:jaelsondev345@gmail.com",
+            "url": "/",
+            "sameAs": [
+                "https://www.linkedin.com/in/jaelson-santos-8628b52a4/",
+                "https://github.com/JaelsonS"
+            ]
+        }
+        </script>
 </head>
-<body>
+<body class="bg-body">
     <a href="#conteudo-principal" class="link-salto">Saltar para conteúdo</a>
 <header>
-    <nav class="barra-navegacao" aria-label="Navegação principal">
-        <div class="caixa">
-            <div class="barra-navegacao-conteudo">
-                <a class="marca" href="#inicio">
-                    <span class="logo-texto">
-                        <span class="logo-inicial">J</span>SANTOS
-                    </span>
-                </a>
-                <button class="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <nav class="barra-navegacao navbar navbar-expand-md" aria-label="Navegação principal">
+        <div class="caixa container">
+            <a class="marca navbar-brand" href="#inicio">
+                <span class="logo-texto">
+                    <span class="logo-inicial">J</span>SANTOS
+                </span>
+            </a>
+            <button class="botao-menu navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu-principal" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-md-end" id="menu-principal">
+                <ul class="menu-principal navbar-nav ms-md-auto">
+                    <li class="nav-item"><a class="link-menu nav-link" href="#inicio">Início</a></li>
+                    <li class="nav-item"><a class="link-menu nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="link-menu nav-link" href="#habilidades">Stack</a></li>
+                    <li class="nav-item"><a class="link-menu nav-link" href="#projetos">Projetos</a></li>
+                    <li class="nav-item"><a class="link-menu nav-link" href="#contato">Contato</a></li>
+                </ul>
             </div>
-            <ul class="menu-principal" id="menu-principal">
-                <li><a class="link-menu" href="#inicio">Início</a></li>
-                <li><a class="link-menu" href="#sobre">Sobre</a></li>
-                <li><a class="link-menu" href="#habilidades">Stack</a></li>
-                <li class="menu-item has-submenu">
-                    <a class="link-menu link-menu-dropdown" href="#projetos" aria-haspopup="true" aria-expanded="false">
-                        Projetos
-                        <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                    </a>
-                    <ul class="submenu-projetos" aria-label="Projetos disponíveis">
-                        <li><a class="link-submenu" href="https://saasude.com" target="_blank" rel="noopener noreferrer">SaaSude.com</a></li>
-                        <li><a class="link-submenu" href="https://future-taupe-nine.vercel.app/" target="_blank" rel="noopener noreferrer">Future Clinic</a></li>
-                        <li><a class="link-submenu" href="https://saude-com-amor.vercel.app/" target="_blank" rel="noopener noreferrer">Saúde com Amor</a></li>
-                        <li><a class="link-submenu" href="https://imigran-construtora.vercel.app/" target="_blank" rel="noopener noreferrer">Imigran Construtora</a></li>
-                        <li><a class="link-submenu" href="https://club-flix.vercel.app/" target="_blank" rel="noopener noreferrer">Club Flix</a></li>
-                        <li><a class="link-submenu" href="https://bijusda-maya.vercel.app/" target="_blank" rel="noopener noreferrer">Bijus da Maya</a></li>
-                        <li><a class="link-submenu" href="https://the-code-rockers-website.vercel.app/" target="_blank" rel="noopener noreferrer">The Code Rockers</a></li>
-                    </ul>
-                </li>
-                <li><a class="link-menu" href="#contato">Contato</a></li>
-            </ul>
         </div>
     </nav>
 </header>
 <main id="conteudo-principal">
     <section id="inicio" class="destaque is-visible" data-revelar="">
         <div class="destaque-overlay"></div>
-            <div class="caixa">
-                <div class="grade-destaque">
-                    <div class="destaque-conteudo">
+            <div class="caixa container">
+                <div class="grade-destaque row g-4 align-items-center">
+                    <div class="destaque-conteudo col-12 col-lg-7">
                         <h1 class="destaque-titulo">
                         Olá, eu sou o <span class="texto-destaque">Jaelson</span>
                         </h1>
-                        <h2 class="destaque-subtitulo">Desenvolvedor Fullstack em formação | Foco em soluções web eficientes e centradas no utilizador</h2>
+                        <h2 class="destaque-subtitulo">Desenvolvedor Full Stack em formação | Soluções web eficientes, inovadoras e centradas no utilizador</h2>
                         <p class="destaque-descricao">
-                        Estou a construir minha carreira em desenvolvimento web, com experiência prática em produtos SaaS
-                        e integração de sistemas. Busco oportunidades para aplicar minhas habilidades em projetos reais,
-                        aprender e contribuir com soluções de impacto.
+                        Estou em transição para a tecnologia com consistência, estudo diário e execução prática.
+                        Desenvolvo projetos pessoais para resolver problemas reais e transformar ideias em produtos com valor.
+                        Procuro uma oportunidade para contribuir com visão de produto, foco no utilizador e entrega de qualidade.
                         </p>
 
                         <div class="destaque-botoes">
                         <a href="#contato" class="botao botao-primario">Entrar em Contato</a>
                         <a href="#projetos" class="botao botao-contorno">Ver Projetos</a>
-                        <a href="assets/docs/JaelsonDev2026%20(2).pdf" class="botao botao-contorno" download="" aria-label="Baixar currículo em PDF">
+                        <a href="assets/docs/JaelsonDev2026.pdf" class="botao botao-contorno" download="" aria-label="Baixar currículo em PDF">
                         Baixar Currículo
                         </a>
                         </div>
 
                         <div class="destaque-localizacao">
-                        <span>Leiria, Portugal</span>
+                        <span>Coimbra, Portugal</span>
                         </div>
                         <div class="destaque-redes" aria-label="Links sociais">
                         <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer">
@@ -95,7 +119,7 @@
                         </div>
                 </div>
 
-                <div>
+                <div class="destaque-media col-12 col-md-5 d-flex justify-content-center">
                 <img src="assets/images/jaelson.jpg" alt="Jaelson Santos - Desenvolvedor Full Stack" class="foto-perfil" width="320" height="320" fetchpriority="high" decoding="async" loading="eager">
                 </div>
             </div>
@@ -103,7 +127,7 @@
     </section>
 
         <section id="sobre" class="secao" data-revelar>
-            <div class="caixa">
+            <div class="caixa container">
                 <div class="cabecalho-secao">
                     <span class="subtitulo-secao">Conheça-me</span>
                     <h2 class="titulo-secao">Sobre <span class="texto-primario">Mim</span></h2>
@@ -112,31 +136,31 @@
                         Um resumo direto sobre quem sou, o que faço e como posso contribuir no seu time.
                     </p>
                 </div>
-                <div class="grade-sobre">
-                    <article class="cartao" data-revelar>
+                <div class="grade-sobre row g-4">
+                    <article class="cartao col-12 col-lg-6" data-revelar>
                         <h3 class="titulo-cartao">Formação & Objetivo</h3>
                         <p class="texto-cartao">
-                            Sou estudante de <strong>Fullstack</strong> na Master D (Coimbra), com foco em criar aplicações
-                            web modernas e bem estruturadas.
-                            Gostaria de iniciar minha carreira como estagiário ou júnior, contribuindo para projetos reais e
-                            aprendendo com profissionais experientes.
+                            Sou estudante de <strong>Desenvolvimento Full Stack</strong> na Master D (Coimbra),
+                            com base prática em frontend, backend, bases de dados e integração de APIs.
+                            Quero iniciar como estagiário ou júnior para somar com responsabilidade desde o primeiro dia.
                         </p>
                         <p class="texto-cartao">
-                            Venho de um background em <strong>vendas e liderança</strong>, atualmente em transição para tecnologia, onde aplico minha disciplina, foco e paixão por aprender continuamente.
+                            Venho de um background em <strong>vendas e liderança</strong>, o que fortaleceu minha comunicação,
+                            organização e visão de negócio. Hoje aplico essa experiência para criar soluções reais com foco no utilizador.
                         </p>
 
                     </article>
 
-                    <article class="cartao" data-revelar>
+                    <article class="cartao col-12 col-lg-6" data-revelar>
                         <h3 class="titulo-cartao">Foco & Aspirações</h3>
                         <p class="texto-cartao">
-                            Tenho grande interesse em desenvolvimento de aplicações web completas, do frontend ao backend,
-                            com atenção à experiência do utilizador, performance e acessibilidade.
+                            Tenho foco em construir produtos digitais úteis, claros e escaláveis.
+                            Gosto de pensar no problema antes da tecnologia, propondo soluções inovadoras e viáveis para cada contexto.
                         </p>
                         <ul class="lista-sobre">
                             <li><strong>Disponível para:</strong> Estágio | Remoto | Híbrido | Presencial</li>
-                            <li><strong>Áreas de interesse:</strong> Web Development | SaaS | APIs</li>
-                            <li><strong>Em constante aprendizado:</strong> TypeScript | React | Node.js</li>
+                            <li><strong>Áreas de interesse:</strong> Web Development | SaaS | Plataformas de serviços</li>
+                            <li><strong>Aprendizagem contínua:</strong> Next.js | PHP | Arquitetura de produtos digitais</li>
                         </ul>
                     </article>
                 </div>
@@ -144,14 +168,14 @@
         </section>
 
         <section id="habilidades" class="secao" data-revelar>
-            <div class="caixa">
+            <div class="caixa container">
                 <div class="cabecalho-secao">
                     <span class="subtitulo-secao">Minhas habilidades</span>
-                    <h2 class="titulo-secao">Stack <span class="texto-primario">& Skills</span></h2>
+                    <h2 class="titulo-secao">Stack <span class="texto-primario">real e em evolução</span></h2>
                     <div class="linha-secao"></div>
                 </div>
-                <div class="grade-habilidades">
-                    <div class="cartao cartao-habilidade" data-revelar>
+                <div class="grade-habilidades row g-4">
+                    <div class="cartao cartao-habilidade col-12 col-md-6 col-xl-4" data-revelar>
                         <div class="cabecalho-habilidade">
                             <div class="icone-habilidade">FE</div>
                             <h3 class="titulo-habilidade">Frontend</h3>
@@ -175,12 +199,30 @@
                                     <div class="nivel-habilidade" data-level="80"></div>
                                 </div>
                             </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">Next.js</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="72"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">Bootstrap 5</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="85"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">Vite</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="78"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="cartao cartao-habilidade" data-revelar>
+                    <div class="cartao cartao-habilidade col-12 col-md-6 col-xl-4" data-revelar>
                         <div class="cabecalho-habilidade">
-                            <div class="icone-habilidade">BE</div>
-                            <h3 class="titulo-habilidade">Backend</h3>
+                            <div class="icone-habilidade">BD</div>
+                            <h3 class="titulo-habilidade">Backend & Dados</h3>
                         </div>
                         <div class="conteudo-habilidade">
                             <div class="item-habilidade">
@@ -201,12 +243,30 @@
                                     <div class="nivel-habilidade" data-level="85"></div>
                                 </div>
                             </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">MongoDB</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="78"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">Supabase</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="74"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">PHP (em estudo)</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="55"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="cartao cartao-habilidade" data-revelar>
+                    <div class="cartao cartao-habilidade col-12 col-md-6 col-xl-4" data-revelar>
                         <div class="cabecalho-habilidade">
                             <div class="icone-habilidade">DEV</div>
-                            <h3 class="titulo-habilidade">Ferramentas</h3>
+                            <h3 class="titulo-habilidade">Ferramentas & Fluxo</h3>
                         </div>
                         <div class="conteudo-habilidade">
                             <div class="item-habilidade">
@@ -216,9 +276,21 @@
                                 </div>
                             </div>
                             <div class="item-habilidade">
+                                <span class="nome-habilidade">GitHub Desktop</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="88"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
                                 <span class="nome-habilidade">VS Code</span>
                                 <div class="barra-habilidade">
                                     <div class="nivel-habilidade" data-level="95"></div>
+                                </div>
+                            </div>
+                            <div class="item-habilidade">
+                                <span class="nome-habilidade">Expo (React Native)</span>
+                                <div class="barra-habilidade">
+                                    <div class="nivel-habilidade" data-level="68"></div>
                                 </div>
                             </div>
                             <div class="item-habilidade">
@@ -234,18 +306,18 @@
         </section>
 
         <section id="projetos" class="secao" data-revelar>
-            <div class="caixa">
+            <div class="caixa container">
                 <div class="cabecalho-secao">
                     <span class="subtitulo-secao">Meu trabalho</span>
                     <h2 class="titulo-secao">Projetos <span class="texto-primario">Recentes</span></h2>
                     <div class="linha-secao"></div>
                     <p class="descricao-secao">
-                        Projetos com foco em resolver problemas reais, com stack moderna e boas práticas.
+                        Projetos com foco em resolver problemas reais, com atenção ao utilizador, clareza de fluxo e impacto de negócio.
                     </p>
                 </div>
 
-                <div class="grade-projetos">
-                    <article class="cartao cartao-projeto" data-revelar>
+                <div class="grade-projetos row g-4">
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Online</div>
                         <div class="imagem-projeto">
                             <img src="assets/images/saasude.svg" alt="Logo do SaaSude" loading="lazy" decoding="async">
@@ -266,7 +338,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Piloto</div>
                         <div class="imagem-projeto" aria-hidden="true">
                             <span class="icone-projeto">
@@ -289,7 +361,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Piloto</div>
                         <div class="imagem-projeto" aria-hidden="true">
                             <span class="icone-projeto">
@@ -312,7 +384,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Em aprovação</div>
                         <div class="imagem-projeto" aria-hidden="true">
                             <span class="icone-projeto">
@@ -335,7 +407,7 @@
                             </div>
                         </div>
                     </article>
-                     <article class="cartao cartao-projeto" data-revelar>
+                     <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Online</div>
                         <div class="imagem-projeto" aria-hidden="true">
                             <span class="icone-projeto">
@@ -358,7 +430,31 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
+                        <div class="status-projeto">Em desenvolvimento</div>
+                        <div class="imagem-projeto" aria-hidden="true">
+                            <span class="icone-projeto">
+                                <i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="conteudo-projeto">
+                            <h3 class="titulo-projeto">IdeaServi</h3>
+                            <p class="descricao-projeto">
+                                Plataforma que estou a desenvolver para solicitar serviços para casa e comércio em minutos,
+                                com pedido simples, comparação de orçamentos, pagamento protegido na plataforma e acompanhamento
+                                do serviço até à confirmação de conclusão.
+                            </p>
+                            <div class="tecnologias-projeto">
+                                <span class="tag-tecnologia">Produto SaaS</span>
+                                <span class="tag-tecnologia">Web App</span>
+                                <span class="tag-tecnologia">UX Flow</span>
+                            </div>
+                            <div class="links-projeto">
+                                <a href="https://ideaservi.com" target="_blank" rel="noopener noreferrer" class="botao botao-primario">Visitar Site</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Exercício Master D</div>
                         <div class="imagem-projeto">
                             <img src="assets/images/log0.png" alt="Imagem promocional da banda The Code Rockers" loading="lazy" decoding="async">
@@ -381,7 +477,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Online</div>
                         <div class="imagem-projeto" aria-hidden="true">
                             <span class="icone-projeto">
@@ -404,7 +500,7 @@
                             </div>
                         </div>
                     </article>
-                    <article class="cartao cartao-projeto" data-revelar>
+                    <article class="cartao cartao-projeto col-12 col-md-6 col-lg-4" data-revelar>
                         <div class="status-projeto">Online</div>
                         <div class="imagem-projeto">
                             <img src="assets/images/jaelson.jpg" alt="Imagem do portfólio de Jaelson Santos" loading="lazy" decoding="async">
@@ -430,7 +526,7 @@
         </section>
 
         <section id="contato" class="secao fundo-claro" data-revelar>
-            <div class="caixa">
+            <div class="caixa container">
                 <div class="cabecalho-secao">
                     <span class="subtitulo-secao">Vamos conversar</span>
                     <h2 class="titulo-secao">Entre em <span class="texto-primario">Contato</span></h2>
@@ -439,19 +535,24 @@
                         Estou aberto a novas oportunidades e adoraria ouvir sobre seu projeto!
                     </p>
                 </div>
-                <div class="grade-contato">
-                    <div class="info-contato" data-revelar>
+                <div class="grade-contato row g-4">
+                    <div class="info-contato col-12 col-lg-6" data-revelar>
+                        <div class="intro-contato">
+                            <span class="subtitulo-secao">Resposta rápida</span>
+                            <h3>Fale comigo pelos canais abaixo</h3>
+                            <p>Estou disponível para oportunidades de estágio, júnior e projetos freelance.</p>
+                        </div>
                         <div class="item-contato">
-                            <h3>Email</h3>
+                            <h3><span class="icone" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>Email</h3>
                             <a href="mailto:jaelsondev345@gmail.com" class="link-contato">jaelsondev345@gmail.com</a>
                         </div>
                         <div class="item-contato">
-                            <h3>WhatsApp</h3>
+                            <h3><span class="icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>WhatsApp</h3>
                             <a href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" class="link-contato">+351 916 447 990</a>
                         </div>
                         <div class="item-contato">
-                            <h3>Localização</h3>
-                            <p>Leiria, Portugal</p>
+                            <h3><span class="icone" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>Localização</h3>
+                            <p>Coimbra, Portugal</p>
                         </div>
                         <div class="redes-contato">
                             <h3>Redes sociais</h3>
@@ -495,7 +596,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="col-12 col-lg-6">
                         <form id="formularioContato" class="formulario-contato" action="https://formspree.io/f/xzdapvgl" method="POST" novalidate data-revelar>
                             <div class="status-formulario" id="statusFormulario" role="status" aria-live="polite" aria-atomic="true"></div>
 
@@ -522,53 +623,58 @@
     </main>
 
     <footer class="rodape">
-        <div class="caixa">
-            <div class="grade-rodape">
-                <div>
+        <div class="caixa container">
+            <div class="grade-rodape row g-4">
+                <div class="col-12 col-lg-4 bloco-rodape">
                     <h3><span class="texto-destaque">Jaelson</span> Santos</h3>
                     <p>Desenvolvedor Full Stack</p>
+                    <p class="texto-rodape">Construo soluções web com foco no utilizador, desempenho e clareza de produto.</p>
                 </div>
-                <div class="links-rodape">
+                <div class="links-rodape col-12 col-lg-4 bloco-rodape">
+                    <h4>Navegação</h4>
                     <a href="#inicio">Início</a>
                     <a href="#sobre">Sobre</a>
                     <a href="#habilidades">Stack</a>
                     <a href="#projetos">Projetos</a>
                     <a href="#contato">Contato</a>
                 </div>
-                <div class="redes-rodape">
-                    <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-linkedin-in"></i></span>
-                    </a>
-                    <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
-                    </a>
-                    <a href="https://www.instagram.com/jaelsonsantoos" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
-                    </a>
-                    <a href="https://www.tiktok.com/@jaelsonsantoos345" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-tiktok"></i></span>
-                    </a>
-                    <a href="https://www.threads.com/@jaelsonsantoos" target="_blank" rel="noopener noreferrer" aria-label="Threads">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-threads"></i></span>
-                    </a>
-                    <a href="https://x.com/jaelsonsil56152?s=21" target="_blank" rel="noopener noreferrer" aria-label="X">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-x-twitter"></i></span>
-                    </a>
-                    <a href="https://www.facebook.com/share/1EBexVJ9oU/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-facebook-f"></i></span>
-                    </a>
-                    <a href="mailto:jaelsondev345@gmail.com" aria-label="Email">
-                        <span class="icone" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
-                    </a>
-                    <a href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-                        <span class="icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
-                    </a>
+                <div class="redes-rodape col-12 col-lg-4 bloco-rodape">
+                    <h4>Redes</h4>
+                    <div class="lista-redes-rodape">
+                        <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-linkedin-in"></i></span>
+                        </a>
+                        <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+                        </a>
+                        <a href="https://www.instagram.com/jaelsonsantoos" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-instagram"></i></span>
+                        </a>
+                        <a href="https://www.tiktok.com/@jaelsonsantoos345" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-tiktok"></i></span>
+                        </a>
+                        <a href="https://www.threads.com/@jaelsonsantoos" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-threads"></i></span>
+                        </a>
+                        <a href="https://x.com/jaelsonsil56152?s=21" target="_blank" rel="noopener noreferrer" aria-label="X">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-x-twitter"></i></span>
+                        </a>
+                        <a href="https://www.facebook.com/share/1EBexVJ9oU/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-facebook-f"></i></span>
+                        </a>
+                        <a href="mailto:jaelsondev345@gmail.com" aria-label="Email">
+                            <span class="icone" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+                        </a>
+                        <a href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <span class="icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
             <div class="base-rodape">
                 <p>
-                    &copy; 2026 Jaelson Santos. Desenvolvedor Fullstack em formação | Aberto a oportunidades de Estágio ou Júnior
+                    &copy; 2026 Jaelson Santos. Desenvolvedor Full Stack em formação | Aberto a oportunidades para contribuir com soluções reais
                 </p>
             </div>
         </div>
@@ -576,7 +682,6 @@
 
     <a class="whatsapp-flutuante" href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp">
         <span class="icone" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></span>
-        <span>WhatsApp</span>
     </a>
 
     <script defer src="main.js"></script>

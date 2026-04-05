@@ -1,11 +1,11 @@
 # Portfolio — Jaelson Santos
 
-Portfólio pessoal focado em recrutadores e clientes. Projeto leve, direto e organizado em HTML, CSS e JavaScript no root.
+Portfólio pessoal focado em recrutadores e clientes. Projeto leve, direto e organizado em HTML, CSS e JavaScript no root, com posicionamento voltado para soluções reais e foco no utilizador.
 
 ## O que tem aqui
 
 - Layout moderno, responsivo e acessível.
-- Menu mobile e dropdown de projetos no desktop.
+- Menu mobile direto e navegação simplificada.
 - Seção de projetos com cases reais e pilotos.
 - Formulário com validação simples e envio via Formspree.
 - Ícones com Font Awesome.
@@ -15,6 +15,13 @@ Portfólio pessoal focado em recrutadores e clientes. Projeto leve, direto e org
 - HTML5
 - CSS3
 - JavaScript (ES6+)
+- Bootstrap 5
+- React / Next.js (projetos e estudos)
+- Node.js / Express
+- MongoDB / Supabase
+- Vite / Expo
+- Git, GitHub e GitHub Desktop
+- PHP (em estudo)
 
 ## Estrutura do projeto
 
@@ -45,6 +52,7 @@ portfolio-santos/
 ## Projetos em destaque
 
 - SaaSude.com
+- IdeaServi
 - Future Clinic (Cliente piloto)
 - Saúde com Amor (Cliente piloto)
 - Imigran Construtora

@@ -1,43 +1,29 @@
 const PortfolioApp = {
     init() {
-        this.initMenuToggle();
+        this.initMenuCollapse();
         this.initSmoothScroll();
         this.initActiveMenu();
         this.initForm();
         this.initReveal();
         this.initHabilidades();
-        this.initVideoEmbed();
     },
 
-    initMenuToggle() {
-        const toggle = document.querySelector('.botao-menu');
-        const menu = document.querySelector('.menu-principal');
-        if (!toggle || !menu) return;
+    initMenuCollapse() {
+        const menu = document.getElementById('menu-principal');
+        if (!menu) return;
 
-        toggle.addEventListener('click', () => {
-            const isOpen = menu.classList.toggle('is-open');
-            toggle.setAttribute('aria-expanded', String(isOpen));
-            toggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
-            toggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
-        });
-
-        menu.querySelectorAll('a').forEach(link => {
+        const links = menu.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
             link.addEventListener('click', () => {
-                menu.classList.remove('is-open');
-                toggle.setAttribute('aria-expanded', 'false');
-                toggle.setAttribute('aria-label', 'Abrir menu');
-                toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            });
-        });
+                const isDesktop = window.matchMedia('(min-width: 768px)').matches;
+                if (isDesktop || !menu.classList.contains('show')) return;
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key !== 'Escape') return;
-            if (!menu.classList.contains('is-open')) return;
-            menu.classList.remove('is-open');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.setAttribute('aria-label', 'Abrir menu');
-            toggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            toggle.focus();
+                if (window.bootstrap && window.bootstrap.Collapse) {
+                    window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
+                } else {
+                    menu.classList.remove('show');
+                }
+            });
         });
     },
 
@@ -48,16 +34,31 @@ const PortfolioApp = {
                 const href = anchor.getAttribute('href');
                 if (!href || href === '#' || href === '#!') return;
 
-                const target = document.querySelector(href);
+                const targetId = href.slice(1);
+                const target = document.getElementById(targetId);
                 if (!target) return;
 
                 e.preventDefault();
+
+                const headerHeight = parseInt(
+                    getComputedStyle(document.documentElement).getPropertyValue('--header-height'),
+                    10
+                ) || 72;
+
+                const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 8;
                 window.scrollTo({
-                    top: target.offsetTop - 80,
+                    top: Math.max(0, top),
                     behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
 
-                history.pushState(null, '', href);
+                if (history.replaceState) {
+                    history.replaceState(null, '', href);
+                }
+
+                if (!target.hasAttribute('tabindex')) {
+                    target.setAttribute('tabindex', '-1');
+                }
+                target.focus({ preventScroll: true });
             });
         });
     },
@@ -208,9 +209,20 @@ const PortfolioApp = {
     },
 
     initReveal() {
-        const targets = document.querySelectorAll('[data-revelar]');
-        if (!targets.length || !('IntersectionObserver' in window)) {
-            targets.forEach(target => target.classList.add('is-visible'));
+        const targets = Array.from(document.querySelectorAll('[data-revelar]'));
+        if (!targets.length) return;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        targets.forEach(target => {
+            if (prefersReducedMotion || target.tagName === 'SECTION') {
+                target.classList.add('is-visible');
+            }
+        });
+
+        const revealTargets = targets.filter(target => !target.classList.contains('is-visible'));
+        if (!revealTargets.length || !('IntersectionObserver' in window)) {
+            revealTargets.forEach(target => target.classList.add('is-visible'));
             return;
         }
 
@@ -223,10 +235,13 @@ const PortfolioApp = {
                     }
                 });
             },
-            { threshold: 0.15 }
+            {
+                threshold: 0.01,
+                rootMargin: '0px 0px -8% 0px'
+            }
         );
 
-        targets.forEach(target => observer.observe(target));
+        revealTargets.forEach(target => observer.observe(target));
     },
 
     initHabilidades() {
@@ -236,52 +251,6 @@ const PortfolioApp = {
             if (!nivel) return;
             barra.style.width = `${nivel}%`;
         });
-    },
-
-    initVideoEmbed() {
-        const container = document.querySelector('.video-embed');
-        if (!container) return;
-
-        const src = container.getAttribute('data-video-src');
-        if (!src) return;
-
-        const template = container.innerHTML;
-
-        const bindPlay = () => {
-            const botao = container.querySelector('.botao-video');
-            if (!botao) return;
-
-            botao.addEventListener('click', () => {
-                const iframe = document.createElement('iframe');
-                iframe.src = src;
-                iframe.title = 'Vídeo de apresentação';
-                iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.loading = 'lazy';
-                container.innerHTML = '';
-                container.appendChild(iframe);
-                container.dataset.playing = 'true';
-            });
-        };
-
-        bindPlay();
-
-        if (!('IntersectionObserver' in window)) return;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting && container.dataset.playing === 'true') {
-                        container.innerHTML = template;
-                        container.dataset.playing = 'false';
-                        bindPlay();
-                    }
-                });
-            },
-            { threshold: 0.2 }
-        );
-
-        observer.observe(container);
     }
 };
 
