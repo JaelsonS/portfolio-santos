@@ -1,5 +1,6 @@
 const PortfolioApp = {
     init() {
+        this.initMenuToggle();
         this.initMenuCollapse();
         this.initSmoothScroll();
         this.initActiveMenu();
@@ -8,9 +9,24 @@ const PortfolioApp = {
         this.initHabilidades();
     },
 
+    // Fecha o menu mobile ao clicar fora
+    initMenuToggle() {
+        const toggleBtn = document.querySelector('.botao-menu');
+        const menu = document.getElementById('menu-principal');
+        if (!toggleBtn || !menu || !window.bootstrap || !window.bootstrap.Collapse) return;
+
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+                if (menu.classList.contains('show')) {
+                    window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
+                }
+            }
+        });
+    },
+
     initMenuCollapse() {
         const menu = document.getElementById('menu-principal');
-        if (!menu) return;
+        if (!menu || !window.bootstrap || !window.bootstrap.Collapse) return;
 
         const links = menu.querySelectorAll('a[href^="#"]');
         links.forEach((link) => {
@@ -18,11 +34,7 @@ const PortfolioApp = {
                 const isDesktop = window.matchMedia('(min-width: 768px)').matches;
                 if (isDesktop || !menu.classList.contains('show')) return;
 
-                if (window.bootstrap && window.bootstrap.Collapse) {
-                    window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
-                } else {
-                    menu.classList.remove('show');
-                }
+                window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
             });
         });
     },
@@ -196,7 +208,7 @@ const PortfolioApp = {
 
                 setStatus('Mensagem enviada! Obrigado pelo contato. Vou responder o mais rápido possível. 😊', 'success');
                 form.reset();
-            } catch (error) {
+            } catch {
                 setStatus('Não consegui enviar agora. Tente novamente em instantes.', 'error');
             } finally {
                 if (submitBtn) {
