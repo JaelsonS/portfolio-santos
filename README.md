@@ -1,29 +1,29 @@
 # Portfolio — Jaelson Santos
 
-Portfólio pessoal focado em recrutadores e clientes. Projeto leve, direto e organizado em HTML, CSS e JavaScript no root, com posicionamento voltado para soluções reais e foco no utilizador.
+A professional personal portfolio designed to connect with recruiters, clients, and collaborators. This lightweight landing site is built with plain HTML, CSS, and JavaScript, focusing on clarity, accessibility, and real project results.
 
-## O que tem aqui
+## About this project
 
-- Layout moderno, responsivo e acessível.
-- Menu mobile direto e navegação simplificada.
-- Seção de projetos com cases reais e pilotos.
-- Formulário com validação simples e envio via Formspree.
-- Ícones com Font Awesome.
+- Clean, modern responsive design
+- Mobile-first navigation and simplified menu structure
+- Project showcase with real cases and pilot initiatives
+- Contact form with client-side validation and Formspree integration
+- Font Awesome icons for visual polish
 
-## Stack
+## Tech stack
 
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 - Bootstrap 5
-- React / Next.js (projetos e estudos)
+- React / Next.js (projects and study)
 - Node.js / Express
 - MongoDB / Supabase
 - Vite / Expo
-- Git, GitHub e GitHub Desktop
-- PHP (em estudo)
+- GitHub, GitHub Desktop
+- PHP (in progress)
 
-## Estrutura do projeto
+## Project structure
 
 portfolio-santos/
 ├── index.html
@@ -31,36 +31,43 @@ portfolio-santos/
 ├── main.js
 ├── assets/
 │   ├── images/
-│   │   ├── jaelson.jpg
-│   │   ├── log0.png
-│   │   └── saasude.svg
 │   └── docs/
-│       ├── apresentacao.vtt
 │       └── JaelsonDev2026 (2).pdf
 └── README.md
 
-## Como rodar localmente
+## Run locally
 
-- Abra o index.html com Live Server (ou outro servidor estático).
-- O formulário envia pelo Formspree, então não precisa de backend.
+1. Open `index.html` with Live Server or any static file server.
+2. The contact form is configured to send via Formspree, so no backend is required.
 
-## Formulário (Formspree)
+## Contact form
 
-- Endpoint configurado no HTML: https://formspree.io/f/xzdapvgl
-- Para testes locais, libere o domínio no painel do Formspree.
+- Formspree endpoint configured in `index.html`: https://formspree.io/f/xzdapvgl
+- This ensures messages can be sent directly from the static portfolio without server code.
+- For local testing, allow your domain in the Formspree dashboard if needed.
 
-## Projetos em destaque
+## Featured work
 
 - SaaSude.com
 - IdeaServi
-- Future Clinic (Cliente piloto)
-- Saúde com Amor (Cliente piloto)
+- Future Clinic (pilot client)
+- Saúde com Amor (pilot client)
 - Imigran Construtora
 - Club Flix
 - Bijus da Maya
 - The Code Rockers Website
-- Portfolio Profissional
+- Professional Portfolio
+- ToDoList
 
-## Deploy
+## Deployment
 
-- Vercel 
+- Hosted on Vercel
+
+## Why this portfolio
+
+This portfolio is built to demonstrate practical front-end skills, user-focused design, and the ability to deliver real client-facing solutions.
+
+## Contact
+
+If you are interested in working together, please use the contact form or reach out directly through my portfolio site.
+
