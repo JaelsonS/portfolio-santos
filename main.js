@@ -1,269 +1,139 @@
-const PortfolioApp = {
-    init() {
-        this.initMenuToggle();
-        this.initMenuCollapse();
-        this.initSmoothScroll();
-        this.initActiveMenu();
-        this.initForm();
-        this.initReveal();
-        this.initHabilidades();
-    },
+const projects = [
+  { title: "SaaSude", category: "backend", description: "SaaS para clínicas com gestão e operação real.", image: "assets/images/saasude.svg", live: "https://saasude.com", code: "https://github.com/JaelsonS/saaSude1.0" },
+  { title: "Future Clinic", category: "frontend", description: "Landing para clínicas com foco em conversão.", image: "assets/images/site1.jpg", live: "https://future-taupe-nine.vercel.app/", code: "https://github.com/JaelsonS/Future" },
+  { title: "Saúde com Amor", category: "frontend", description: "Página para clínica com agendamento e confiança.", image: "assets/images/clienteComputador.jpg", live: "https://saude-com-amor.vercel.app/", code: "https://github.com/JaelsonS/saudeComAmor" },
+  { title: "Imigran Construtora", category: "uxui", description: "Site institucional com estrutura clara e objetiva.", image: "assets/images/medium-shot-senior-man-indoors.jpg", live: "https://imigran-construtora.vercel.app/", code: "https://github.com/JaelsonS/ImigranConstrutora" },
+  { title: "Club Flix", category: "frontend", description: "Interface de streaming com foco em experiência.", image: "assets/images/programming-background-with-person-working-with-codes-computer.jpg", live: "https://club-flix.vercel.app/", code: "https://github.com/JaelsonS/ClubFlix" },
+  { title: "IdeaServi", category: "uxui", description: "Fluxo de solicitação de serviços com foco em produto.", image: "assets/images/young-man-wearing-blue-outfit-doing-holding-gesture.jpg", live: "https://ideaservi.com", code: "https://github.com/JaelsonS/IdeaServi" },
+  { title: "The Code Rockers", category: "frontend", description: "Projeto Master D com páginas semânticas.", image: "assets/images/logo-portfolio.png", live: "https://the-code-rockers-website.vercel.app/", code: "https://github.com/JaelsonS/the-code-rockers-website" },
+  { title: "Bijus da Maya", category: "uxui", description: "Landing artesanal para divulgação e encomendas.", image: "assets/images/mulhercomputador.jpg", live: "https://bijusda-maya.vercel.app/", code: "https://github.com/JaelsonS/BijusdaMaya" },
+  { title: "ToDoList Master D", category: "backend", description: "To-do list com localStorage, histórico e validação.", image: "assets/images/computer-program-coding-screen.jpg", live: "https://exc-to-do-list-master-d.vercel.app/", code: "https://github.com/JaelsonS/excToDoListMasterD" }
+];
 
-    // Fecha o menu mobile ao clicar fora
-    initMenuToggle() {
-        const toggleBtn = document.querySelector('.botao-menu');
-        const menu = document.getElementById('menu-principal');
-        if (!toggleBtn || !menu || !window.bootstrap || !window.bootstrap.Collapse) return;
-
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
-                if (menu.classList.contains('show')) {
-                    window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
-                }
-            }
-        });
-    },
-
-    initMenuCollapse() {
-        const menu = document.getElementById('menu-principal');
-        if (!menu || !window.bootstrap || !window.bootstrap.Collapse) return;
-
-        const links = menu.querySelectorAll('a[href^="#"]');
-        links.forEach((link) => {
-            link.addEventListener('click', () => {
-                const isDesktop = window.matchMedia('(min-width: 768px)').matches;
-                if (isDesktop || !menu.classList.contains('show')) return;
-
-                window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
-            });
-        });
-    },
-
-    initSmoothScroll() {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                const href = anchor.getAttribute('href');
-                if (!href || href === '#' || href === '#!') return;
-
-                const targetId = href.slice(1);
-                const target = document.getElementById(targetId);
-                if (!target) return;
-
-                e.preventDefault();
-
-                const headerHeight = parseInt(
-                    getComputedStyle(document.documentElement).getPropertyValue('--header-height'),
-                    10
-                ) || 72;
-
-                const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 8;
-                window.scrollTo({
-                    top: Math.max(0, top),
-                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                });
-
-                if (history.replaceState) {
-                    history.replaceState(null, '', href);
-                }
-
-                if (!target.hasAttribute('tabindex')) {
-                    target.setAttribute('tabindex', '-1');
-                }
-                target.focus({ preventScroll: true });
-            });
-        });
-    },
-
-    initActiveMenu() {
-        const navLinks = Array.from(document.querySelectorAll('.link-menu'));
-        const sections = Array.from(document.querySelectorAll('section[id]'));
-        if (!navLinks.length || !sections.length) return;
-
-        let ticking = false;
-
-        const updateActive = () => {
-            const scrollPosition = window.scrollY + 120;
-            let currentId = '';
-
-            sections.forEach(section => {
-                const top = section.offsetTop;
-                const bottom = top + section.offsetHeight;
-                if (scrollPosition >= top && scrollPosition < bottom) {
-                    currentId = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                const isActive = link.getAttribute('href') === `#${currentId}`;
-                link.classList.toggle('active', isActive);
-                if (isActive) {
-                    link.setAttribute('aria-current', 'page');
-                } else {
-                    link.removeAttribute('aria-current');
-                }
-            });
-        };
-
-        const requestUpdate = () => {
-            if (ticking) return;
-            ticking = true;
-            window.requestAnimationFrame(() => {
-                updateActive();
-                ticking = false;
-            });
-        };
-
-        updateActive();
-        window.addEventListener('scroll', requestUpdate, { passive: true });
-        window.addEventListener('resize', requestUpdate);
-    },
-
-    initForm() {
-        const form = document.getElementById('formularioContato');
-        if (!form) return;
-
-        const status = form.querySelector('.status-formulario');
-        const submitBtn = form.querySelector('button[type="submit"]');
-
-        const setStatus = (message, type) => {
-            if (!status) return;
-            status.textContent = message;
-            status.classList.remove('is-error', 'is-success');
-            if (type === 'error') status.classList.add('is-error');
-            if (type === 'success') status.classList.add('is-success');
-        };
-
-        const setFieldState = (field, isValid) => {
-            field.classList.remove('is-invalid', 'is-valid');
-            field.classList.add(isValid ? 'is-valid' : 'is-invalid');
-        };
-
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            form.setAttribute('aria-busy', 'true');
-
-            const nameField = form.querySelector('#nome');
-            const emailField = form.querySelector('#email');
-            const subjectField = form.querySelector('#assunto');
-            const messageField = form.querySelector('#mensagem');
-
-            const name = nameField.value.trim();
-            const email = emailField.value.trim();
-            const subject = subjectField.value.trim() || 'Contato do Portfolio';
-            const message = messageField.value.trim();
-
-            let isValid = true;
-
-            if (!name) {
-                setFieldState(nameField, false);
-                isValid = false;
-            } else {
-                setFieldState(nameField, true);
-            }
-
-            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                setFieldState(emailField, false);
-                isValid = false;
-            } else {
-                setFieldState(emailField, true);
-            }
-
-            if (!message || message.length < 10) {
-                setFieldState(messageField, false);
-                isValid = false;
-            } else {
-                setFieldState(messageField, true);
-            }
-
-            if (!isValid) {
-                setStatus('Revise os campos destacados.', 'error');
-                form.setAttribute('aria-busy', 'false');
-                return;
-            }
-
-            setStatus('Enviando...', 'success');
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Enviando...';
-            }
-
-            const payload = { name, email, subject, message };
-            const formAction = form.getAttribute('action');
-
-            try {
-                if (!formAction) {
-                    throw new Error('Formulário sem endpoint.');
-                }
-
-                const response = await fetch(formAction, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    throw new Error('Falha no envio via API.');
-                }
-
-                setStatus('Mensagem enviada! Obrigado pelo contato. Vou responder o mais rápido possível. 😊', 'success');
-                form.reset();
-            } catch {
-                setStatus('Não consegui enviar agora. Tente novamente em instantes.', 'error');
-            } finally {
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Enviar Mensagem';
-                }
-                form.setAttribute('aria-busy', 'false');
-            }
-        });
-    },
-
-    initReveal() {
-        const targets = Array.from(document.querySelectorAll('[data-revelar]'));
-        if (!targets.length) return;
-
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        targets.forEach(target => {
-            if (prefersReducedMotion || target.tagName === 'SECTION') {
-                target.classList.add('is-visible');
-            }
-        });
-
-        const revealTargets = targets.filter(target => !target.classList.contains('is-visible'));
-        if (!revealTargets.length || !('IntersectionObserver' in window)) {
-            revealTargets.forEach(target => target.classList.add('is-visible'));
-            return;
-        }
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            {
-                threshold: 0.01,
-                rootMargin: '0px 0px -8% 0px'
-            }
-        );
-
-        revealTargets.forEach(target => observer.observe(target));
-    },
-
-    initHabilidades() {
-        const barras = document.querySelectorAll('.nivel-habilidade');
-        barras.forEach(barra => {
-            const nivel = barra.dataset.level;
-            if (!nivel) return;
-            barra.style.width = `${nivel}%`;
-        });
-    }
+const labels = {
+  all: "Todos",
+  frontend: "Frontend",
+  backend: "Backend",
+  uxui: "UX/UI"
 };
 
-document.addEventListener('DOMContentLoaded', () => PortfolioApp.init());
+function projectSlideTemplate(project, isActive) {
+  return `
+    <article class="carousel-item ${isActive ? "active" : ""}">
+      <div class="project-slide">
+        <div>
+          <img src="${project.image}" alt="Imagem do projeto ${project.title}" class="project-media" loading="lazy" decoding="async">
+          <span class="badge-category">${labels[project.category]}</span>
+          <h3 class="h4 mt-2">${project.title}</h3>
+          <p class="mb-0">${project.description}</p>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <a class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.live}">Ver site</a>
+          <a class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.code}">Ver código</a>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderProjects(filter = "all") {
+  const inner = document.getElementById("projectsCarouselInner");
+  if (!inner) return;
+
+  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+  inner.innerHTML = filtered.map((project, idx) => projectSlideTemplate(project, idx === 0)).join("");
+
+  const carouselEl = document.getElementById("carouselProjetos");
+  if (carouselEl && window.bootstrap?.Carousel) {
+    window.bootstrap.Carousel.getOrCreateInstance(carouselEl).to(0);
+  }
+}
+
+function initFilters() {
+  const options = document.querySelectorAll(".filter-option");
+  const filterLabel = document.getElementById("filterLabel");
+
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      const filter = option.dataset.filter || "all";
+      renderProjects(filter);
+      if (filterLabel) {
+        filterLabel.textContent = labels[filter] || "Todos";
+      }
+    });
+  });
+}
+
+function initReveal() {
+  const targets = document.querySelectorAll(".reveal");
+  if (!targets.length) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+}
+
+function initMobileMenuClose() {
+  const menu = document.getElementById("menuPrincipal");
+  const links = document.querySelectorAll(".navbar .nav-link");
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!menu?.classList.contains("show") || !window.bootstrap?.Collapse) return;
+      window.bootstrap.Collapse.getOrCreateInstance(menu).hide();
+    });
+  });
+}
+
+function initForm() {
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("formStatus");
+  if (!form || !status) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nome = document.getElementById("nome");
+    const email = document.getElementById("email");
+    const mensagem = document.getElementById("mensagem");
+
+    const valid = form.checkValidity() && nome.value.trim().length >= 2 && mensagem.value.trim().length >= 10;
+
+    if (!valid) {
+      status.textContent = "Preencha corretamente nome, email e mensagem.";
+      return;
+    }
+
+    const subject = encodeURIComponent("Novo contacto pelo portfólio");
+    const body = encodeURIComponent(`Nome: ${nome.value}\nEmail: ${email.value}\n\nMensagem:\n${mensagem.value}`);
+    window.location.href = `mailto:jaelsondev345@gmail.com?subject=${subject}&body=${body}`;
+    status.textContent = "A abrir o seu email para envio da mensagem.";
+    form.reset();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const yearEl = document.getElementById("currentYear");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  renderProjects("all");
+  initFilters();
+  initReveal();
+  initMobileMenuClose();
+  initForm();
+});
