@@ -104,8 +104,9 @@ function initForm() {
   const form = document.getElementById("contactForm");
   const status = document.getElementById("formStatus");
   if (!form || !status) return;
+  const formspreeEndpoint = "https://formspree.io/f/xzdapvgl";
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const nome = document.getElementById("nome");
@@ -119,11 +120,31 @@ function initForm() {
       return;
     }
 
-    const subject = encodeURIComponent("Novo contacto pelo portfólio");
-    const body = encodeURIComponent(`Nome: ${nome.value}\nEmail: ${email.value}\n\nMensagem:\n${mensagem.value}`);
-    window.location.href = `mailto:jaelsondev345@gmail.com?subject=${subject}&body=${body}`;
-    status.textContent = "A abrir o seu email para envio da mensagem.";
-    form.reset();
+    status.textContent = "A enviar mensagem...";
+
+    try {
+      const response = await fetch(formspreeEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          nome: nome.value.trim(),
+          email: email.value.trim(),
+          mensagem: mensagem.value.trim()
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Falha no envio");
+      }
+
+      status.textContent = "Mensagem enviada com sucesso. Obrigado pelo contacto.";
+      form.reset();
+    } catch (error) {
+      status.textContent = "Não foi possível enviar agora. Tente novamente em instantes.";
+    }
   });
 }
 
