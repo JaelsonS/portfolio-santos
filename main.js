@@ -7,7 +7,8 @@ const projects = [
   { title: "IdeaServi", category: "uxui", description: "Fluxo de solicitação de serviços com foco em produto.", image: "assets/images/young-man-wearing-blue-outfit-doing-holding-gesture.jpg", live: "https://ideaservi.com", code: "https://github.com/JaelsonS/IdeaServi" },
   { title: "The Code Rockers", category: "frontend", description: "Projeto Master D com páginas semânticas.", image: "assets/images/log0.png", live: "https://the-code-rockers-website.vercel.app/", code: "https://github.com/JaelsonS/the-code-rockers-website" },
   { title: "Bijus da Maya", category: "uxui", description: "Landing artesanal para divulgação e encomendas.", image: "assets/images/mulhercomputador.jpg", live: "https://bijusda-maya.vercel.app/", code: "https://github.com/JaelsonS/BijusdaMaya" },
-  { title: "ToDoList Master D", category: "backend", description: "To-do list com localStorage, histórico e validação.", image: "assets/images/computer-program-coding-screen.jpg", live: "https://exc-to-do-list-master-d.vercel.app/", code: "https://github.com/JaelsonS/excToDoListMasterD" }
+  { title: "ToDoList Master D", category: "backend", description: "To-do list com localStorage, histórico e validação.", image: "assets/images/computer-program-coding-screen.jpg", live: "https://exc-to-do-list-master-d.vercel.app/", code: "https://github.com/JaelsonS/excToDoListMasterD" },
+  { title: "Teglion", category: "backend", description: "SaaS para escritórios de contabilidade com foco em gestão.", image: "assets/images/working-code.jpg", live: "https://www.teglion.com", code: "https://www.teglion.com" }
 ];
 
 const labels = {
