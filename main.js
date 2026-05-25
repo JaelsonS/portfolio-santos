@@ -1,5 +1,6 @@
 const projects = [
   { title: "SaaSude", category: "backend", description: "SaaS para clínicas com gestão e operação real.", image: "assets/images/saasude.svg", live: "https://saasude.com", code: "https://github.com/JaelsonS/saaSude1.0" },
+  { title: "Teglion", category: "backend", description: "SaaS para escritórios de contabilidade com foco em gestão.", image: "assets/images/working-code.jpg", live: "https://www.teglion.com", code: "https://www.teglion.com" },
   { title: "Future Clinic", category: "frontend", description: "Landing para clínicas com foco em conversão.", image: "assets/images/site1.jpg", live: "https://future-taupe-nine.vercel.app/", code: "https://github.com/JaelsonS/Future" },
   { title: "Saúde com Amor", category: "frontend", description: "Página para clínica com agendamento e confiança.", image: "assets/images/clienteComputador.jpg", live: "https://saude-com-amor.vercel.app/", code: "https://github.com/JaelsonS/saudeComAmor" },
   { title: "Imigran Construtora", category: "uxui", description: "Site institucional com estrutura clara e objetiva.", image: "assets/images/medium-shot-senior-man-indoors.jpg", live: "https://imigran-construtora.vercel.app/", code: "https://github.com/JaelsonS/ImigranConstrutora" },
@@ -7,8 +8,7 @@ const projects = [
   { title: "IdeaServi", category: "uxui", description: "Fluxo de solicitação de serviços com foco em produto.", image: "assets/images/young-man-wearing-blue-outfit-doing-holding-gesture.jpg", live: "https://ideaservi.com", code: "https://github.com/JaelsonS/IdeaServi" },
   { title: "The Code Rockers", category: "frontend", description: "Projeto Master D com páginas semânticas.", image: "assets/images/log0.png", live: "https://the-code-rockers-website.vercel.app/", code: "https://github.com/JaelsonS/the-code-rockers-website" },
   { title: "Bijus da Maya", category: "uxui", description: "Landing artesanal para divulgação e encomendas.", image: "assets/images/mulhercomputador.jpg", live: "https://bijusda-maya.vercel.app/", code: "https://github.com/JaelsonS/BijusdaMaya" },
-  { title: "ToDoList Master D", category: "backend", description: "To-do list com localStorage, histórico e validação.", image: "assets/images/computer-program-coding-screen.jpg", live: "https://exc-to-do-list-master-d.vercel.app/", code: "https://github.com/JaelsonS/excToDoListMasterD" },
-  { title: "Teglion", category: "backend", description: "SaaS para escritórios de contabilidade com foco em gestão.", image: "assets/images/working-code.jpg", live: "https://www.teglion.com", code: "https://www.teglion.com" }
+  { title: "ToDoList Master D", category: "backend", description: "To-do list com localStorage, histórico e validação.", image: "assets/images/computer-program-coding-screen.jpg", live: "https://exc-to-do-list-master-d.vercel.app/", code: "https://github.com/JaelsonS/excToDoListMasterD" }
 ];
 
 const labels = {
@@ -18,36 +18,87 @@ const labels = {
   uxui: "UX/UI"
 };
 
-function projectSlideTemplate(project, isActive) {
+let currentFilter = "all";
+
+function getProjectsPerSlide() {
+  return window.matchMedia("(min-width: 992px)").matches ? 2 : 1;
+}
+
+function projectCardTemplate(project) {
   return `
-    <article class="carousel-item ${isActive ? "active" : ""}">
-      <div class="project-slide">
-        <div>
-          <img src="${project.image}" alt="Imagem do projeto ${project.title}" class="project-media" loading="lazy" decoding="async">
-          <span class="badge-category">${labels[project.category]}</span>
-          <h3 class="h4 mt-2">${project.title}</h3>
-          <p class="mb-0">${project.description}</p>
-        </div>
-        <div class="d-flex gap-2 flex-wrap">
-          <a class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.live}">Ver site</a>
-          <a class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.code}">Ver código</a>
-        </div>
+    <article class="project-slide">
+      <div>
+        <img src="${project.image}" alt="Imagem do projeto ${project.title}" class="project-media" loading="lazy" decoding="async">
+        <span class="badge-category">${labels[project.category]}</span>
+        <h3 class="h4 mt-2">${project.title}</h3>
+        <p class="mb-0">${project.description}</p>
+      </div>
+      <div class="d-flex gap-2 flex-wrap">
+        <a class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.live}">Ver site</a>
+        <a class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer" href="${project.code}">Ver código</a>
       </div>
     </article>
   `;
 }
 
+function projectSlideTemplate(projectsGroup, isActive) {
+  return `
+    <article class="carousel-item ${isActive ? "active" : ""}">
+      <div class="projects-slide-grid">
+        ${projectsGroup
+          .map(
+            (project) => `
+              <div class="project-slide-col">
+                ${projectCardTemplate(project)}
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+function chunkProjects(list, size) {
+  const groups = [];
+  for (let i = 0; i < list.length; i += size) {
+    groups.push(list.slice(i, i + size));
+  }
+  return groups;
+}
+
 function renderProjects(filter = "all") {
+  currentFilter = filter;
   const inner = document.getElementById("projectsCarouselInner");
   if (!inner) return;
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
-  inner.innerHTML = filtered.map((project, idx) => projectSlideTemplate(project, idx === 0)).join("");
+  const groupedProjects = chunkProjects(filtered, getProjectsPerSlide());
+
+  inner.innerHTML = groupedProjects
+    .map((projectsGroup, idx) => projectSlideTemplate(projectsGroup, idx === 0))
+    .join("");
 
   const carouselEl = document.getElementById("carouselProjetos");
   if (carouselEl && window.bootstrap?.Carousel) {
     window.bootstrap.Carousel.getOrCreateInstance(carouselEl).to(0);
   }
+}
+
+function initProjectsResponsiveRender() {
+  let lastPerSlide = getProjectsPerSlide();
+  let resizeTimeout;
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const nextPerSlide = getProjectsPerSlide();
+      if (nextPerSlide !== lastPerSlide) {
+        lastPerSlide = nextPerSlide;
+        renderProjects(currentFilter);
+      }
+    }, 120);
+  });
 }
 
 function initFilters() {
@@ -154,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   renderProjects("all");
+  initProjectsResponsiveRender();
   initFilters();
   initReveal();
   initMobileMenuClose();

@@ -97,6 +97,17 @@ section[id], header[id] {
 
 .carousel-item { min-height: 330px; }
 
+#carouselProjetos {
+  position: relative;
+  padding-inline: 56px;
+}
+
+.projects-slide-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
 .project-slide {
   border: 1px solid #d2ddd6;
   border-radius: 1rem;
@@ -107,6 +118,7 @@ section[id], header[id] {
   flex-direction: column;
   justify-content: space-between;
   gap: .8rem;
+  box-shadow: 0 12px 28px rgba(8, 18, 12, 0.08);
 }
 
 .project-media {
@@ -129,16 +141,17 @@ section[id], header[id] {
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   top: calc(50% - 23px);
   background: #0e1411;
   border-radius: 50%;
-  opacity: .9;
+  border: 1px solid rgba(255, 255, 255, .12);
+  opacity: 1;
 }
 
-.carousel-control-prev { left: -6px; }
-.carousel-control-next { right: -6px; }
+.carousel-control-prev { left: 0; }
+.carousel-control-next { right: 0; }
 
 .testimonial-card {
   background: linear-gradient(145deg, #fff, #f2f7f4);
@@ -203,6 +216,7 @@ section[id], header[id] {
   }
   .navbar-nav { padding-top: .25rem; }
   #carouselProjetos {
+    padding-inline: 0;
     padding-bottom: 64px;
   }
   .carousel-control-prev,
@@ -218,4 +232,15 @@ section[id], header[id] {
   .carousel-control-prev { left: 12px; }
   .carousel-control-next { right: 12px; }
   .hero-section { padding-top: 82px; }
+}
+
+@media (min-width: 992px) {
+  .projects-slide-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-slide {
+    min-height: 100%;
+  }
 }
