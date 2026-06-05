@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jaelson Santos | Desenvolvedor Full Stack</title>
-  <meta name="description" content="Portfólio de Jaelson Santos, desenvolvedor Full Stack em Coimbra. Projetos reais de Frontend, Backend e UX/UI para empresas e produtos digitais.">
-  <meta name="keywords" content="Jaelson Santos, portfólio, frontend, backend, UX UI, JavaScript, React, Node.js">
+  <meta name="description" content="Portfólio de Jaelson Santos, desenvolvedor Full Stack em Coimbra. Projetos SaaS, CRM, cibersegurança e produtos digitais com foco em resultado.">
+  <meta name="keywords" content="Jaelson Santos, portfólio, full stack, frontend, backend, cibersegurança, JavaScript, React, Node.js, CRM">
   <meta name="author" content="Jaelson Santos">
   <meta name="theme-color" content="#0b0d0c">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Jaelson Santos | Desenvolvedor Full Stack">
-  <meta property="og:description" content="Projetos reais de desenvolvimento web com foco em resultado e experiência do utilizador.">
+  <meta property="og:description" content="Projetos reais de desenvolvimento web, SaaS, CRM e cibersegurança com foco em resultado.">
   <meta property="og:image" content="assets/images/jaelson.jpg">
   <meta property="og:locale" content="pt_PT">
   <meta name="twitter:card" content="summary_large_image">
@@ -31,16 +31,17 @@
     "name": "Jaelson Santos",
     "jobTitle": "Desenvolvedor Full Stack",
     "address": {"@type": "PostalAddress", "addressLocality": "Coimbra", "addressCountry": "PT"},
-    "url": "https://github.com/JaelsonS",
+    "url": "https://portfolio-santos.vercel.app/",
     "sameAs": [
       "https://github.com/JaelsonS",
       "https://www.linkedin.com/in/jaelson-santos-8628b52a4/"
-    ]
+    ],
+    "knowsAbout": ["JavaScript", "React", "Node.js", "Cybersecurity", "CRM", "SaaS"]
   }
   </script>
 </head>
 <body>
-  <a href="#conteudo" class="skip-link">Saltar para conteúdo</a>
+  <a href="#conteudo" class="skip-link" data-i18n="skipLink">Saltar para conteúdo</a>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark portfolio-nav" aria-label="Navegação principal">
     <div class="container">
@@ -48,16 +49,24 @@
         <img src="assets/images/logo-portfolio.png" alt="Logo Jaelson Santos" width="34" height="34" class="brand-logo" loading="eager" decoding="async">
         <span class="logo-word">JSANTOS</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menu">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" data-i18n-aria="openMenu" aria-label="Abrir menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="menuPrincipal">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#clientes">Clientes</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#inicio" data-i18n="nav.home">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre" data-i18n="nav.about">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#competencias" data-i18n="nav.skills">Competências</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projetos" data-i18n="nav.projects">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#formacao" data-i18n="nav.education">Formação</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato" data-i18n="nav.contact">Contato</a></li>
+          <li class="nav-item">
+            <div class="lang-switcher ms-lg-3" role="group" aria-label="Idioma">
+              <button type="button" class="lang-btn active" data-lang="pt" aria-pressed="true">PT</button>
+              <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+              <button type="button" class="lang-btn" data-lang="es" aria-pressed="false">ES</button>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -67,16 +76,16 @@
     <div class="container py-5">
       <div class="row align-items-center g-4">
         <div class="col-lg-7 reveal">
-          <p class="hero-kicker mb-2">DESENVOLVEDOR FULL STACK</p>
-          <h1 class="display-5 fw-bold mb-3">Crio sites e aplicações web modernas com foco em usabilidade e performance</h1>
-          <p class="lead text-light mb-4">Sou o Jaelson Santos. Gosto de transformar ideias em produtos digitais, sou desenvolvedor full stack focado em criar aplicações web modernas, funcionais e com boa experiência do usuário. Atualmente estudo e desenvolvo projetos com JavaScript, React, Node.js e APIs, sempre buscando evoluir minhas habilidades e transformar ideias em soluções reais.</p>
+          <p class="hero-kicker mb-2" data-i18n="hero.kicker">DESENVOLVEDOR FULL STACK · CIBERSEGURANÇA</p>
+          <h1 class="display-5 fw-bold mb-3" data-i18n="hero.title">Transformo ideias em aplicações web que resolvem problemas reais de negócio</h1>
+          <p class="lead text-light mb-4" data-i18n="hero.lead">Sou o Jaelson Santos, em Coimbra. Desenvolvo SaaS, CRM e plataformas web com JavaScript, React e Node.js.</p>
           <div class="d-flex flex-wrap gap-2">
-            <a href="#projetos" class="btn btn-success btn-lg">Ver projetos</a>
-            <a href="assets/docs/JaelsonDev2026.pdf" class="btn btn-outline-light btn-lg" download>Baixar currículo</a>
+            <a href="#projetos" class="btn btn-success btn-lg" data-i18n="hero.ctaProjects">Ver projetos</a>
+            <a id="cvDownload" href="assets/docs/JaelsonSantos_CV_Fullstack.pdf" class="btn btn-outline-light btn-lg" download data-i18n="hero.ctaCv">Baixar currículo</a>
           </div>
         </div>
         <div class="col-lg-5 text-center reveal">
-          <img src="assets/images/jaelsonSocialBranca.jpeg" alt="Jaelson Santos, desenvolvedor Full Stack" class="hero-photo img-fluid rounded-4 shadow" width="340" height="340" fetchpriority="high">
+          <img src="assets/images/jaelsonSocialBranca.jpeg" alt="Jaelson Santos" class="hero-photo img-fluid rounded-4 shadow" width="340" height="340" fetchpriority="high">
         </div>
       </div>
     </div>
@@ -87,86 +96,95 @@
       <div class="container">
         <div class="row g-4">
           <div class="col-lg-6 reveal">
-            <h2 class="section-title">Sobre mim</h2>
-            <p>Estou em formação em Desenvolvimento Full Stack na Master D e já venho construindo projetos reais com frontend, backend, APIs e bancos de dados. Minha base anterior em vendas e liderança me ajuda a pensar em produto com foco no cliente final.</p>
-            <p>Tenho paixão por criar experiências digitais que sejam intuitivas, visualmente agradáveis e que realmente resolvam os problemas dos utilizadores. Estou sempre buscando aprender novas tecnologias e aprimorar minhas habilidades para entregar o melhor resultado possível.</p>
+            <h2 class="section-title" data-i18n="about.title">Sobre mim</h2>
+            <p data-i18n="about.p1">Estou em formação Full Stack na Master D (Coimbra) e construo projetos reais com frontend, backend, APIs e bases de dados.</p>
+            <p data-i18n="about.p2">Essa combinação de tecnologia e negócio permite-me pensar em produto de forma prática.</p>
           </div>
           <div class="col-lg-6 reveal">
             <div class="info-card h-100">
-              <h3 class="h5">O que procuro agora</h3>
-              <ul class="mb-0">
-                <li>vaga júnior ou freelancer</li>
-                <li>Contratação imediata</li>
-                <li>Estágio remunerado</li>
-                <li>Remoto, híbrido ou presencial</li>
-                <li>Projetos Web, SaaS e plataformas</li>
-
-              </ul>
+              <h3 class="h5" data-i18n="about.lookingTitle">O que procuro agora</h3>
+              <ul id="lookingList" class="mb-0"></ul>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projetos" class="section-block section-muted">
+    <section id="competencias" class="section-block section-muted">
+      <div class="container reveal">
+        <h2 class="section-title mb-4" data-i18n="skills.title">Competências</h2>
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="info-card h-100">
+              <h3 class="h5" data-i18n="skills.techTitle">Stack técnica</h3>
+              <ul id="techSkillsList" class="skills-list mb-0"></ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="info-card h-100">
+              <h3 class="h5" data-i18n="skills.softTitle">Competências transferíveis</h3>
+              <ul id="softSkillsList" class="skills-list mb-0"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="section-block">
       <div class="container reveal">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-          <h2 class="section-title mb-0">Projetos em destaque</h2>
+          <h2 class="section-title mb-0" data-i18n="projects.title">Projetos em destaque</h2>
           <div class="dropdown">
             <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="projectFilterBtn">
-              Filtrar: <span id="filterLabel">Todos</span>
+              <span data-i18n="projects.filter">Filtrar</span>: <span id="filterLabel">Todos</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="projectFilterBtn">
-              <li><button class="dropdown-item filter-option" data-filter="all">Todos</button></li>
-              <li><button class="dropdown-item filter-option" data-filter="frontend">Frontend</button></li>
-              <li><button class="dropdown-item filter-option" data-filter="backend">Backend</button></li>
-              <li><button class="dropdown-item filter-option" data-filter="uxui">UX/UI</button></li>
+              <li><button class="dropdown-item filter-option" data-filter="all" data-i18n="projects.filters.all">Todos</button></li>
+              <li><button class="dropdown-item filter-option" data-filter="frontend" data-i18n="projects.filters.frontend">Frontend</button></li>
+              <li><button class="dropdown-item filter-option" data-filter="backend" data-i18n="projects.filters.backend">Backend</button></li>
+              <li><button class="dropdown-item filter-option" data-filter="uxui" data-i18n="projects.filters.uxui">UX/UI</button></li>
             </ul>
           </div>
         </div>
 
         <div id="carouselProjetos" class="carousel slide" data-bs-ride="false" aria-label="Carrossel de projetos">
           <div class="carousel-inner" id="projectsCarouselInner"></div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselProjetos" data-bs-slide="prev" aria-label="Projeto anterior">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselProjetos" data-bs-slide="prev" data-i18n-aria="projects.prev" aria-label="Projeto anterior">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselProjetos" data-bs-slide="next" aria-label="Próximo projeto">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselProjetos" data-bs-slide="next" data-i18n-aria="projects.next" aria-label="Próximo projeto">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
           </button>
         </div>
       </div>
     </section>
 
-    <section id="clientes" class="section-block">
+    <section id="formacao" class="section-block section-muted">
       <div class="container reveal">
-        <h2 class="section-title mb-4">Feedback de clientes e parceiros</h2>
-        <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <article class="testimonial-card">
-                <img src="assets/images/cliente1.jpg" class="testimonial-photo" alt="Foto da cliente Maria Silva" loading="lazy" decoding="async">
-                <p>"Jaelson entregou um site acima do esperado, com comunicação clara e muito compromisso."</p>
-                <h3 class="h6 mb-0">Pedro Vinicius</h3>
-                <small>Gestor Comercial</small>
-              </article>
+        <h2 class="section-title mb-4" data-i18n="education.title">Formação e certificações</h2>
+        <div id="educationList" class="education-grid mb-4"></div>
+
+        <article class="ebook-card">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-3 text-center">
+              <div class="ebook-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
             </div>
-            <div class="carousel-item">
-              <article class="testimonial-card">
-                <img src="assets/images/cliente2.jpg" class="testimonial-photo" alt="Foto do cliente João Oliveira" loading="lazy" decoding="async">
-                <p>"Tivemos melhoria na apresentação da empresa e mais contatos vindos do site."</p>
-                <h3 class="h6 mb-0">João Oliveira</h3>
-                <small>Empresário</small>
-              </article>
-            </div>
-            <div class="carousel-item">
-              <article class="testimonial-card">
-                <img src="assets/images/cliente3.jpg" class="testimonial-photo" alt="Foto da cliente Ana Costa" loading="lazy" decoding="async">
-                <p>"Excelente organização e cuidado com os detalhes de UX. Recomendo com confiança."</p>
-                <h3 class="h6 mb-0">Ana Costa</h3>
-                <small>Coordenadora de Projetos</small>
-              </article>
+            <div class="col-md-9">
+              <p class="ebook-kicker mb-1" data-i18n="education.ebookTitle">Publicação digital</p>
+              <h3 class="h4 mb-2" data-i18n="education.ebookName">Conectar e Proteger: Redes e Segurança de Redes</h3>
+              <p class="mb-3" data-i18n="education.ebookDesc">Ebook profissional com 4 módulos sobre fundamentos de redes, TCP/IP, cibersegurança e defesa ativa.</p>
+              <a id="ebookLink" href="https://hotmart.com/pt-br/marketplace/produtos/conectar-e-proteger-redes-e-seguranca-de-redes/P106151051D" class="btn btn-success" target="_blank" rel="noopener noreferrer" data-i18n="education.ebookCta">Ver na Hotmart</a>
             </div>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="clientes" class="section-block">
+      <div class="container reveal">
+        <h2 class="section-title mb-4" data-i18n="testimonials.title">Feedback de clientes e parceiros</h2>
+        <div id="carouselClientes" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner" id="testimonialsInner"></div>
           <div class="carousel-indicators position-static mt-3 mb-0">
             <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Depoimento 1"></button>
             <button type="button" data-bs-target="#carouselClientes" data-bs-slide-to="1" aria-label="Depoimento 2"></button>
@@ -181,47 +199,64 @@
     <div class="container">
       <div class="row g-4 align-items-start">
         <div class="col-lg-5 reveal">
-          <h2 class="h4 text-light">Vamos falar do seu projeto</h2>
-          <p class="text-light">Envie os dados no formulário. Eu retorno com proposta e próximos passos.</p>
-          <div class="d-flex gap-3 mt-3">
+          <h2 class="h4 text-light" data-i18n="contact.title">Vamos falar do seu projeto</h2>
+          <p class="text-light" data-i18n="contact.subtitle">Envie os dados no formulário. Retorno com proposta e próximos passos.</p>
+          <div class="d-flex flex-wrap gap-3 mt-3 social-links">
             <a href="https://github.com/JaelsonS" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
             <a href="https://www.linkedin.com/in/jaelson-santos-8628b52a4/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a id="whatsappLink" href="https://wa.me/351916447990" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             <a href="https://www.instagram.com/jaelsonsantoos/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.facebook.com/Jaelsonsantoos345" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-            <a href="https://www.twitter.com/jaelsonsil56152" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-            <a href="https://www.threads.com/jaelsonsantoos" target="_blank" rel="noopener noreferrer" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
-            <a href="https://www.tiktok.com/@jaelsonsantoos345" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://wa.me/351916447990?text=Ol%C3%A1%21%20Vim%20do%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20voc%C3%AA%20e%20como%20voc%C3%AA%20pode%20me%20ajudar." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
         <div class="col-lg-7 reveal">
           <form id="contactForm" class="contact-card" novalidate>
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="nome" class="form-label">Nome</label>
+                <label for="nome" class="form-label" data-i18n="contact.name">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome" required minlength="2" autocomplete="name">
               </div>
               <div class="col-md-6">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label" data-i18n="contact.email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required autocomplete="email">
               </div>
               <div class="col-12">
-                <label for="mensagem" class="form-label">Mensagem</label>
+                <label for="mensagem" class="form-label" data-i18n="contact.message">Mensagem</label>
                 <textarea class="form-control" id="mensagem" name="mensagem" rows="4" required minlength="10"></textarea>
               </div>
               <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
-                <button type="submit" class="btn btn-success">Enviar mensagem</button>
+                <button type="submit" class="btn btn-success" data-i18n="contact.send">Enviar mensagem</button>
                 <small id="formStatus" class="text-light" role="status" aria-live="polite"></small>
               </div>
             </div>
           </form>
         </div>
       </div>
-      <p class="mb-0 mt-4 text-center text-light">&copy; <span id="currentYear"></span> Jaelson Santos. Todos os direitos reservados.</p>
+      <p class="mb-0 mt-4 text-center text-light">&copy; <span id="currentYear"></span> Jaelson Santos. <span data-i18n="contact.rights">Todos os direitos reservados.</span></p>
     </div>
   </footer>
 
+  <div class="modal fade" id="codeAccessModal" tabindex="-1" aria-labelledby="codeAccessModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content code-access-modal">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="codeAccessModalTitle"></h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" data-i18n-aria="projects.closeModal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="codeAccessModalDesc" class="mb-2"></p>
+          <p id="codeAccessProjectName" class="code-access-project-name fw-bold mb-3"></p>
+          <div class="d-flex flex-wrap gap-2">
+            <a id="codeAccessLinkedIn" class="btn btn-success" href="#" target="_blank" rel="noopener noreferrer"></a>
+            <a id="codeAccessWhatsApp" class="btn btn-outline-success" href="#" target="_blank" rel="noopener noreferrer"></a>
+          </div>
+          <p id="codeAccessFeedback" class="code-access-feedback mb-0" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="i18n.js" defer></script>
   <script src="main.js" defer></script>
 </body>
 </html>
