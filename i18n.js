@@ -41,7 +41,7 @@ const translations = {
       title: "Competências",
       techTitle: "Stack técnica",
       softTitle: "Competências transferíveis",
-      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "APIs REST", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Python (em curso)"],
+      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "APIs REST", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Java (em curso)"],
       soft: ["Comunicação e negociação B2B", "Gestão de clientes e CRM", "Resolução de problemas", "Pensamento orientado a negócio", "Trabalho autónomo e aprendizagem contínua"]
     },
     education: {
@@ -129,7 +129,7 @@ const translations = {
     hero: {
       kicker: "FULL STACK DEVELOPER · CYBERSECURITY",
       title: "I turn ideas into web applications that solve real business problems",
-      lead: "I'm Jaelson Santos, based in Coimbra. I build SaaS, CRM and web platforms with JavaScript, React and Node.js. My solid B2B sales background helps me create user-oriented products. Currently deepening cybersecurity, Python and Full Stack training.",
+      lead: "I'm Jaelson Santos, based in Coimbra. I build SaaS, CRM and web platforms with JavaScript, React and Node.js. My solid B2B sales background helps me create user-oriented products. Currently deepening cybersecurity, Java and Full Stack training.",
       ctaProjects: "View projects",
       ctaCv: "Download resume"
     },
@@ -150,7 +150,7 @@ const translations = {
       title: "Skills",
       techTitle: "Technical stack",
       softTitle: "Transferable skills",
-      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "REST APIs", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Python (in progress)"],
+      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "REST APIs", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Java (in progress)"],
       soft: ["Communication and B2B negotiation", "Client management and CRM", "Problem solving", "Business-oriented thinking", "Self-directed learning"]
     },
     education: {
@@ -259,7 +259,7 @@ const translations = {
       title: "Competencias",
       techTitle: "Stack técnico",
       softTitle: "Competencias transferibles",
-      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "APIs REST", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Python (en curso)"],
+      tech: ["JavaScript (ES6+)", "React", "Node.js", "HTML & CSS", "APIs REST", "MongoDB", "Express", "Git / GitHub", "Firebase", "Bootstrap", "OWASP ZAP", "Java (en curso)"],
       soft: ["Comunicación y negociación B2B", "Gestión de clientes y CRM", "Resolución de problemas", "Pensamiento orientado al negocio", "Aprendizaje autónomo y continuo"]
     },
     education: {
