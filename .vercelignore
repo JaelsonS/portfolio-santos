@@ -1,0 +1,9 @@
+# Não enviar para a Vercel
+docs
+assets/images/_archive
+.DS_Store
+.git
+.gitignore
+README.md
+.vercel
+node_modules

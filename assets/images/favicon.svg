@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="JSANTOS">
+  <rect width="64" height="64" rx="14" fill="#0b0f0d"/>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#121815" stroke="#1bc35d" stroke-width="2"/>
+  <path d="M20 18h10.5c6.2 0 10.2 3.4 10.2 8.6 0 5.3-4 8.7-10.2 8.7H26.8V46H20V18zm6.8 5.4v6.6h3.4c2.8 0 4.5-1.4 4.5-3.3s-1.7-3.3-4.5-3.3h-3.4z" fill="#e8f1eb"/>
+  <circle cx="46" cy="46" r="5" fill="#1bc35d"/>
+</svg>
