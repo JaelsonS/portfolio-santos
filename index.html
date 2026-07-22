@@ -97,10 +97,10 @@
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             <span data-i18n="hero.ctaProjects">Ver projetos</span>
           </a>
-          <a id="cvDownload" href="assets/docs/JaelsonSantos_CV_Fullstack.pdf" class="btn btn-ghost" download>
+          <button type="button" id="cvDownload" class="btn btn-ghost" aria-haspopup="dialog" aria-controls="cvModal">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             <span data-i18n="hero.ctaCv">Currículo</span>
-          </a>
+          </button>
         </div>
       </div>
       <div class="hero-media">
@@ -253,6 +253,37 @@
           <a id="codeAccessWhatsApp" class="btn btn-outline" href="#" target="_blank" rel="noopener noreferrer"></a>
         </div>
         <p id="codeAccessFeedback" class="code-access-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="cvModal" hidden>
+    <div class="modal-backdrop" data-close-cv-modal></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+      <div class="modal-header">
+        <h2 class="modal-title" id="cvModalTitle" data-i18n="cvModal.title">Descarregar currículo</h2>
+        <button type="button" class="modal-close" data-close-cv-modal data-i18n-aria="cvModal.close" aria-label="Fechar">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="cvModalDesc" data-i18n="cvModal.desc">Que versão prefere?</p>
+        <div class="cv-choice-grid">
+          <a class="cv-choice" href="assets/docs/JaelsonSantos_CV_PT.pdf" download="JaelsonSantos_CV_PT.pdf">
+            <span class="cv-choice-flag" aria-hidden="true">PT</span>
+            <span class="cv-choice-body">
+              <strong data-i18n="cvModal.ptTitle">Português (PT)</strong>
+              <small data-i18n="cvModal.ptDesc">Versão em português europeu</small>
+            </span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+          <a class="cv-choice" href="assets/docs/JaelsonSantos_CV_EN.pdf" download="JaelsonSantos_CV_EN.pdf">
+            <span class="cv-choice-flag" aria-hidden="true">EN</span>
+            <span class="cv-choice-body">
+              <strong data-i18n="cvModal.enTitle">English</strong>
+              <small data-i18n="cvModal.enDesc">English version</small>
+            </span>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>

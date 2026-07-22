@@ -26,6 +26,15 @@ const translations = {
       ctaProjects: "Ver projetos",
       ctaCv: "Currículo"
     },
+    cvModal: {
+      title: "Descarregar currículo",
+      desc: "Que versão prefere?",
+      ptTitle: "Português (PT)",
+      ptDesc: "Versão em português europeu",
+      enTitle: "English",
+      enDesc: "English version",
+      close: "Fechar"
+    },
     projects: {
       title: "Projetos em destaque",
       lead: "Organizados por impacto — o problema primeiro, a stack depois.",
@@ -200,6 +209,15 @@ const translations = {
       ctaProjects: "View projects",
       ctaCv: "Resume"
     },
+    cvModal: {
+      title: "Download resume",
+      desc: "Which version would you like?",
+      ptTitle: "Portuguese (PT)",
+      ptDesc: "European Portuguese version",
+      enTitle: "English",
+      enDesc: "English version",
+      close: "Close"
+    },
     projects: {
       title: "Featured projects",
       lead: "Ordered by impact — problem first, stack second.",
@@ -373,6 +391,15 @@ const translations = {
       lead: "Soy Jaelson Santos. Formado en Contabilidad, terminando Full Stack en Master D. Me gusta entender el problema, hablar con quien usa el producto y mejorar con feedback. Ahora profundizo en Java y backend — sin dejar de construir en full stack.",
       ctaProjects: "Ver proyectos",
       ctaCv: "Currículum"
+    },
+    cvModal: {
+      title: "Descargar currículum",
+      desc: "¿Qué versión prefieres?",
+      ptTitle: "Portugués (PT)",
+      ptDesc: "Versión en portugués europeo",
+      enTitle: "English",
+      enDesc: "Versión en inglés",
+      close: "Cerrar"
     },
     projects: {
       title: "Proyectos destacados",

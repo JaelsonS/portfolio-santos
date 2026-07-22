@@ -1,5 +1,5 @@
 # Não enviar para a Vercel
-docs
+/docs
 assets/images/_archive
 .DS_Store
 .git

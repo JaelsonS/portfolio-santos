@@ -1,8 +1,11 @@
-const CV_PATH = "assets/docs/JaelsonSantos_CV_Fullstack.pdf";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xzdapvgl";
 const LINKEDIN_RECIPIENT = "jaelson-santos-8628b52a4";
 const LINKEDIN_COMPOSE_URL = `https://www.linkedin.com/messaging/compose/?recipient=${LINKEDIN_RECIPIENT}`;
 const WHATSAPP_PHONE = "351916447990";
+const CV_FILES = {
+  pt: "assets/docs/JaelsonSantos_CV_PT.pdf",
+  en: "assets/docs/JaelsonSantos_CV_EN.pdf"
+};
 
 const projects = [
   {
@@ -80,6 +83,7 @@ let currentLang = "pt";
 let selectedProjectId = null;
 let codeAccessFeedbackTimeoutId = null;
 let lastFocusedBeforeModal = null;
+let lastFocusedBeforeCvModal = null;
 
 const ICONS = {
   external:
@@ -351,7 +355,6 @@ function renderDynamicContent() {
   renderSkills();
   renderEducation();
   updateWhatsAppLink();
-  initCvLink();
 }
 
 function initReveal() {
@@ -449,11 +452,6 @@ function initForm() {
   });
 }
 
-function initCvLink() {
-  const cvLink = document.getElementById("cvDownload");
-  if (cvLink) cvLink.href = CV_PATH;
-}
-
 async function copyToClipboard(text) {
   if (navigator.clipboard?.writeText) {
     await navigator.clipboard.writeText(text);
@@ -485,6 +483,79 @@ function showCodeAccessFeedback(message) {
 
 function getFocusableElements(container) {
   return [...container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])')];
+}
+
+function closeCvModal() {
+  const modal = document.getElementById("cvModal");
+  if (!modal || modal.hidden) return;
+
+  modal.hidden = true;
+  document.body.style.overflow = "";
+  lastFocusedBeforeCvModal?.focus();
+}
+
+function openCvModal() {
+  const modal = document.getElementById("cvModal");
+  if (!modal) return;
+
+  lastFocusedBeforeCvModal = document.activeElement;
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+
+  const closeBtn = modal.querySelector(".modal-close");
+  if (closeBtn) closeBtn.setAttribute("aria-label", translate("cvModal.close"));
+
+  const focusables = getFocusableElements(modal);
+  focusables[0]?.focus();
+}
+
+function initCvModal() {
+  const trigger = document.getElementById("cvDownload");
+  const modal = document.getElementById("cvModal");
+  if (!trigger || !modal) return;
+
+  const ptLink = modal.querySelector('a[href*="CV_PT"]');
+  const enLink = modal.querySelector('a[href*="CV_EN"]');
+  if (ptLink) ptLink.href = CV_FILES.pt;
+  if (enLink) enLink.href = CV_FILES.en;
+
+  trigger.addEventListener("click", () => openCvModal());
+
+  modal.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close-cv-modal]")) {
+      closeCvModal();
+      return;
+    }
+
+    if (event.target.closest(".cv-choice")) {
+      window.setTimeout(() => closeCvModal(), 150);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+
+    if (event.key === "Escape") {
+      closeCvModal();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const focusables = getFocusableElements(modal);
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 }
 
 function closeCodeAccessModal() {
@@ -602,7 +673,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   window.I18n.initI18n();
-  initCvLink();
   renderDynamicContent();
 
   document.addEventListener("languageChanged", (event) => {
@@ -624,4 +694,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileNav();
   initForm();
   initCodeAccessModal();
+  initCvModal();
 });

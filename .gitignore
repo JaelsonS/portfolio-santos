@@ -4,7 +4,7 @@ node_modules/
 .vercel/
 
 # Documentação interna — não vai para o Git de produção do site
-docs/
+/docs/
 
 # Arquivo de assets pesados / órfãos
 assets/images/_archive/
