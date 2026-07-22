@@ -351,7 +351,7 @@ function renderDynamicContent() {
   renderSkills();
   renderEducation();
   updateWhatsAppLink();
-  refreshStaticIconButtons();
+  initCvLink();
 }
 
 function initReveal() {
@@ -451,23 +451,7 @@ function initForm() {
 
 function initCvLink() {
   const cvLink = document.getElementById("cvDownload");
-  if (!cvLink) return;
-  cvLink.href = CV_PATH;
-  cvLink.innerHTML = labelWithIcon("download", translate("hero.ctaCv"));
-}
-
-function refreshStaticIconButtons() {
-  const projectsCta = document.querySelector('a[href="#projetos"].btn');
-  if (projectsCta) {
-    projectsCta.innerHTML = labelWithIcon("arrowDown", translate("hero.ctaProjects"));
-  }
-
-  const sendBtn = document.querySelector('#contactForm button[type="submit"]');
-  if (sendBtn) {
-    sendBtn.innerHTML = labelWithIcon("send", translate("contact.send"));
-  }
-
-  initCvLink();
+  if (cvLink) cvLink.href = CV_PATH;
 }
 
 async function copyToClipboard(text) {

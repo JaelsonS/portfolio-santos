@@ -28,9 +28,14 @@
   <link rel="icon" type="image/png" href="assets/images/favicon-portfolio.png">
   <link rel="apple-touch-icon" href="assets/images/logo-portfolio.png">
 
+  <link rel="preload" as="image" href="assets/images/jaelson-hero.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@600;700&display=swap">
+  </noscript>
   <link rel="stylesheet" href="styles.css">
 
   <script type="application/ld+json">
@@ -83,17 +88,23 @@
 
   <header id="inicio" class="hero">
     <div class="container hero-grid">
-      <div class="hero-copy reveal">
+      <div class="hero-copy">
         <p class="hero-kicker" data-i18n="hero.kicker">Full Stack em formação · Coimbra</p>
         <h1 data-i18n="hero.title">Construo produtos digitais e evoluo um pouco todos os dias.</h1>
         <p class="hero-lead" data-i18n="hero.lead">Sou o Jaelson Santos. Formado em Contabilidade, a concluir Full Stack na Master D. Gosto de perceber o problema, falar com quem usa o produto e melhorar com feedback. Neste momento aprofundo Java e backend — sem deixar de construir em full stack.</p>
         <div class="hero-actions">
-          <a href="#projetos" class="btn btn-primary">Ver projetos</a>
-          <a id="cvDownload" href="assets/docs/JaelsonSantos_CV_Fullstack.pdf" class="btn btn-ghost" download>Currículo</a>
+          <a href="#projetos" class="btn btn-primary">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+            <span data-i18n="hero.ctaProjects">Ver projetos</span>
+          </a>
+          <a id="cvDownload" href="assets/docs/JaelsonSantos_CV_Fullstack.pdf" class="btn btn-ghost" download>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span data-i18n="hero.ctaCv">Currículo</span>
+          </a>
         </div>
       </div>
-      <div class="hero-media reveal">
-        <img src="assets/images/jaelsonSocialBranca.jpeg" alt="Jaelson Santos" class="hero-photo" width="340" height="340" fetchpriority="high" decoding="async">
+      <div class="hero-media">
+        <img src="assets/images/jaelson-hero.jpg" alt="Jaelson Santos" class="hero-photo" width="640" height="640" fetchpriority="high" decoding="async">
       </div>
     </div>
   </header>
@@ -216,7 +227,10 @@
           <textarea id="mensagem" name="mensagem" rows="4" required minlength="10"></textarea>
         </div>
         <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+          <button type="submit" class="btn btn-primary">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <span data-i18n="contact.send">Enviar mensagem</span>
+          </button>
           <small id="formStatus" role="status" aria-live="polite"></small>
         </div>
       </form>
