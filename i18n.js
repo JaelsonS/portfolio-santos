@@ -21,7 +21,7 @@ const translations = {
     },
     hero: {
       kicker: "Full Stack em formação · Coimbra",
-      title: "Construo produtos digitais e evoluo um pouco todos os dias.",
+      title: "Construo e otimizo produtos digitais através de dados, inovação e evolução contínua.",
       lead: "Sou o Jaelson Santos. Formado em Contabilidade, a concluir Full Stack na Master D. Gosto de perceber o problema, falar com quem usa o produto e melhorar com feedback. Neste momento aprofundo Java e backend — sem deixar de construir em full stack.",
       ctaProjects: "Ver projetos",
       ctaCv: "Currículo"
@@ -204,7 +204,7 @@ const translations = {
     },
     hero: {
       kicker: "Full Stack in training · Coimbra",
-      title: "I build digital products and get a little better every day.",
+      title: "Building and optimizing digital products through data, innovation, and continuous evolution.",
       lead: "I'm Jaelson Santos. Accounting graduate, finishing Full Stack at Master D. I like understanding the problem, talking to the people who use the product, and improving with feedback. Right now I'm deepening Java and backend — while still building full stack.",
       ctaProjects: "View projects",
       ctaCv: "Resume"
@@ -387,7 +387,7 @@ const translations = {
     },
     hero: {
       kicker: "Full Stack en formación · Coímbra",
-      title: "Construyo productos digitales y mejoro un poco cada día.",
+      title: "Construyo y optimizo productos digitales a través de datos, innovación y evolución continua.",
       lead: "Soy Jaelson Santos. Formado en Contabilidad, terminando Full Stack en Master D. Me gusta entender el problema, hablar con quien usa el producto y mejorar con feedback. Ahora profundizo en Java y backend — sin dejar de construir en full stack.",
       ctaProjects: "Ver proyectos",
       ctaCv: "Currículum"
