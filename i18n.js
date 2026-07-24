@@ -85,12 +85,24 @@ const translations = {
           title: "AfDigital",
           problem: "Precisávamos de uma presença séria para desenvolver sites e sistemas sob medida — e captar clientes de forma honesta.",
           solution: "Agência que criei com a minha esposa (julho 2026). Site institucional bilingue com Construtor de Ideias: o visitante monta um briefing visual antes da reunião.",
-          note: "Ainda estamos no início e a captar clientes. Sem inventar portfólio de clientes nem faturação.",
+          note: "Já entregámos o primeiro cliente freelance (Imigran Construtora). Continuamos no início — sem inventar faturação nem uma lista grande de clientes.",
           highlights: [
             "Site orientado a conversão (PT/EN)",
             "Construtor de Ideias como diferencial",
-            "Captação de leads em implementação",
+            "Primeiro projeto de cliente entregue e no ar",
             "Negócio real, fase inicial"
+          ]
+        },
+        imigran: {
+          title: "Imigran Construtora",
+          problem: "Uma construtora em Coimbra precisava de presença digital credível — com obras reais, contactos fáceis e credenciais visíveis (alvará, IMPIC, seguros).",
+          solution: "Site institucional bilingue (PT/EN) feito pela AfDigital: portfólio com fotos reais de obra, comparador antes/depois, WhatsApp, formulário, mapa e páginas legais.",
+          note: "Cliente freelance entregue e em produção em imigranconstrutora.com. Conteúdo e prioridades definidos com o cliente; a AfDigital propôs, mostrou e executou.",
+          highlights: [
+            "12 obras com galeria e comparador antes/depois",
+            "Conversão: orçamento, WhatsApp e formulário",
+            "SEO local, JSON-LD e conformidade RGPD/cookies",
+            "Stack estática HTML/CSS/JS — leve e no ar"
           ]
         },
         saasude: {
@@ -104,10 +116,6 @@ const translations = {
         luxxEstetica: {
           title: "Luxx Estética",
           description: "Site institucional para clínica de estética, com integração de agendamento."
-        },
-        imigran: {
-          title: "Imigran Construtora",
-          description: "Site institucional para apresentar serviços e facilitar contacto."
         },
         codeRockers: {
           title: "The Code Rockers",
@@ -268,12 +276,24 @@ const translations = {
           title: "AfDigital",
           problem: "We needed a serious presence to build custom sites and systems — and to win clients honestly.",
           solution: "An agency I started with my wife (July 2026). Bilingual institutional site with an Idea Builder: visitors assemble a visual brief before the meeting.",
-          note: "We're still early and looking for clients. No invented client list or revenue claims.",
+          note: "We already delivered our first freelance client (Imigran Construtora). We're still early — no invented revenue or a long client list.",
           highlights: [
             "Conversion-focused site (PT/EN)",
             "Idea Builder as the main differentiator",
-            "Lead capture in progress",
+            "First client project delivered and live",
             "Real business, early stage"
+          ]
+        },
+        imigran: {
+          title: "Imigran Construtora",
+          problem: "A construction company in Coimbra needed a credible digital presence — real works, easy contact and visible credentials (licence, IMPIC, insurance).",
+          solution: "Bilingual institutional site (PT/EN) built through AfDigital: portfolio with real job photos, before/after comparator, WhatsApp, form, map and legal pages.",
+          note: "Freelance client delivered and live at imigranconstrutora.com. Content and priorities were defined with the client; AfDigital proposed, showed and shipped.",
+          highlights: [
+            "12 works with gallery and before/after comparator",
+            "Conversion: quote requests, WhatsApp and form",
+            "Local SEO, JSON-LD and RGPD/cookie compliance",
+            "Static HTML/CSS/JS stack — lightweight and live"
           ]
         },
         saasude: {
@@ -287,10 +307,6 @@ const translations = {
         luxxEstetica: {
           title: "Luxx Estética",
           description: "Institutional site for an aesthetics clinic, with booking integration."
-        },
-        imigran: {
-          title: "Imigran Construtora",
-          description: "Institutional site to present services and make contact easy."
         },
         codeRockers: {
           title: "The Code Rockers",
@@ -451,12 +467,24 @@ const translations = {
           title: "AfDigital",
           problem: "Necesitábamos una presencia seria para desarrollar sitios y sistemas a medida — y captar clientes con honestidad.",
           solution: "Agencia que creé con mi esposa (julio 2026). Sitio institucional bilingüe con Constructor de Ideas: el visitante arma un briefing visual antes de la reunión.",
-          note: "Aún estamos al inicio y captando clientes. Sin inventar cartera ni facturación.",
+          note: "Ya entregamos el primer cliente freelance (Imigran Construtora). Seguimos al inicio — sin inventar facturación ni una lista larga de clientes.",
           highlights: [
             "Sitio orientado a conversión (PT/EN)",
             "Constructor de Ideas como diferencial",
-            "Captación de leads en implementación",
+            "Primer proyecto de cliente entregado y en producción",
             "Negocio real, fase inicial"
+          ]
+        },
+        imigran: {
+          title: "Imigran Construtora",
+          problem: "Una constructora en Coímbra necesitaba presencia digital creíble — con obras reales, contacto fácil y credenciales visibles (albarán, IMPIC, seguros).",
+          solution: "Sitio institucional bilingüe (PT/EN) hecho por AfDigital: portafolio con fotos reales de obra, comparador antes/después, WhatsApp, formulario, mapa y páginas legales.",
+          note: "Cliente freelance entregado y en producción en imigranconstrutora.com. Contenido y prioridades definidos con el cliente; AfDigital propuso, mostró y ejecutó.",
+          highlights: [
+            "12 obras con galería y comparador antes/después",
+            "Conversión: presupuesto, WhatsApp y formulario",
+            "SEO local, JSON-LD y cumplimiento RGPD/cookies",
+            "Stack estática HTML/CSS/JS — ligera y en producción"
           ]
         },
         saasude: {
@@ -470,10 +498,6 @@ const translations = {
         luxxEstetica: {
           title: "Luxx Estética",
           description: "Sitio institucional para clínica de estética, con integración de agendamiento."
-        },
-        imigran: {
-          title: "Imigran Construtora",
-          description: "Sitio institucional para presentar servicios y facilitar el contacto."
         },
         codeRockers: {
           title: "The Code Rockers",

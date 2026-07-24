@@ -32,6 +32,13 @@ const projects = [
     stack: ["React", "TypeScript", "Vite", "Tailwind", "Zustand", "Supabase"]
   },
   {
+    id: "imigran",
+    tier: "featured",
+    status: "live",
+    live: "https://imigranconstrutora.com",
+    stack: ["HTML", "CSS", "JavaScript", "i18n", "JSON-LD", "Vercel"]
+  },
+  {
     id: "saasude",
     tier: "standby",
     status: "standby",
@@ -50,12 +57,6 @@ const projects = [
     tier: "other",
     live: "https://saude-com-amor.vercel.app/",
     stack: ["HTML", "CSS", "Bootstrap", "JavaScript"]
-  },
-  {
-    id: "imigran",
-    tier: "other",
-    live: "https://imigran-construtora.vercel.app/",
-    stack: ["HTML", "CSS", "JavaScript"]
   },
   {
     id: "codeRockers",

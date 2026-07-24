@@ -439,7 +439,7 @@ footer[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
 .featured-list {
   display: grid;
   gap: 1.5rem;
-  min-height: 58rem;
+  min-height: 76rem;
 }
 
 .featured-card {
@@ -985,7 +985,7 @@ footer[id] { scroll-margin-top: calc(var(--nav-h) + 12px); }
   .hero h1 { max-width: none; }
   .hero { padding: 3.25rem 0 3.5rem; }
   .section { padding: 3.5rem 0; }
-  .featured-list { min-height: 72rem; }
+  .featured-list { min-height: 96rem; }
   .work-list { min-height: 28rem; }
   .standby-grid { min-height: 22rem; }
 }
